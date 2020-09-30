@@ -7,50 +7,60 @@ def fig1_plot():
         densityden_SG.append(density_SG(surfacedensityam_SG[i])/1e3)
     
     #fig=plt.figure(figsize=(10,8))
-    fig=plt.figure(figsize=(12,16))
-    plt.subplots_adjust(left=0.07, right=0.98, top=0.95, bottom=0.06, wspace=0.25, hspace=-0.35)  
+    fig=plt.figure(figsize=(7,8))
+    plt.subplots_adjust(left=0.15, right=0.99, top=0.96, bottom=0.07, wspace=0.45, hspace=-0.3)  
 
     ax1 = plt.subplot(211)
     ax2 = plt.subplot(427)
     ax3 = plt.subplot(428)
+    lwid=2
     
-    ax1.plot(harg_SG,h_SG/Rg/2,label='SG',lw=3,c='b')
-    ax1.plot(harg_TQM,h_TQM/Rg/2,label='TQM',lw=3,c='r')
-    ax1.plot(-harg_TQM,-h_TQM/Rg/2,lw=3,c='r')
-    ax1.plot(-harg_TQM,h_TQM/Rg/2,lw=3,c='r')
-    ax1.plot(harg_TQM,-h_TQM/Rg/2,lw=3,c='r')
-    ax1.plot(harg_SG,h_SG/Rg/2,lw=3,c='b') #,label='SG'
-    ax1.plot(-harg_SG,-h_SG/Rg/2,lw=3,c='b')
-    ax1.plot(-harg_SG,h_SG/Rg/2,lw=3,c='b')
-    ax1.plot(harg_SG,-h_SG/Rg/2,lw=3,c='b')
+    ax1.plot(harg_SG,h_SG/Rg/2,label='SG',lw=lwid,c='b')
+    ax1.plot(harg_TQM,h_TQM/Rg/2,label='TQM',lw=lwid,c='r')
+    ax1.plot(-harg_TQM,-h_TQM/Rg/2,lw=lwid,c='r')
+    ax1.plot(-harg_TQM,h_TQM/Rg/2,lw=lwid,c='r')
+    ax1.plot(harg_TQM,-h_TQM/Rg/2,lw=lwid,c='r')
+    ax1.plot(harg_SG,h_SG/Rg/2,lw=lwid,c='b') #,label='SG'
+    ax1.plot(-harg_SG,-h_SG/Rg/2,lw=lwid,c='b')
+    ax1.plot(-harg_SG,h_SG/Rg/2,lw=lwid,c='b')
+    ax1.plot(harg_SG,-h_SG/Rg/2,lw=lwid,c='b')
     ax1.axhline(y=0,lw=1,linestyle="--",c='black')
-    ax1.plot([0,10**4],[0,10**5],'r:',lw=1.5,c='black')
-    ax1.plot(0,0,'o',markersize=25,c='black')
-    ax1.plot(10**4,10**5,'*',markersize=15,c='black')
+    ax1.plot([0,10**4],[0,10**5],'r:',lw=1,c='black')
+    ax1.plot(0,0,'o',markersize=15,c='black')
+    ax1.plot(10**4,10**5,'*',markersize=8, markeredgewidth=0.1, markeredgecolor='k', c='black')
     #matplotlib.pyplot.annotate('$a$', (1e2,1e3),fontsize=12) #labeling orbital radius
     #matplotlib.pyplot.annotate('$i$', (1e1,1e1),fontsize=12) #labeling orbital inclination
     ax1.set_xlabel('$a$ [$R_g$]',fontsize=14)
     ax1.set_ylabel('$H$ [$R_g$]',fontsize=14)
-    ax1.legend(fontsize=12, framealpha=1, edgecolor= 'k', handlelength=4, 
-               ncol=2, columnspacing=2, loc='center left', bbox_to_anchor=(-0.007,1.03))
+    ax1.legend(fontsize=10, framealpha=1, edgecolor= 'k', handlelength=4, 
+               ncol=2, columnspacing=2, loc='center left', bbox_to_anchor=(-0.015,1.04))
     ax1.set_yscale('symlog')
     ax1.set_xscale('symlog')
     ax1.xaxis.set_tick_params(labelsize=12)
     ax1.yaxis.set_tick_params(labelsize=12)
+    ax1.xaxis.set_ticks([-1e7, -1e5, -1e3, -1e1, 0, 1e1, 1e3, 1e5, 1e7])
+    ax1.yaxis.set_ticks([-1e7, -1e5, -1e3, -1e1, 0, 1e1, 1e3, 1e5, 1e7])
+    ax1.set_xlim([-1e8,1e8])
     
-    ax2.loglog(harg_TQM,hovera_TQM,lw=3,label='TQM',c='r')
-    ax2.loglog(harg_SG,hovera_SG,lw=3,label='SG',c='b')
+    ax2.loglog(harg_TQM,hovera_TQM,lw=lwid,label='TQM',c='r')
+    ax2.loglog(harg_SG,hovera_SG,lw=lwid,label='SG',c='b')
     ax2.set_xlabel('$a$ [$R_g$]',fontsize=14)
     ax2.set_ylabel('$H$ / $a$',fontsize=14)
     ax2.xaxis.set_tick_params(labelsize=12)
     ax2.yaxis.set_tick_params(labelsize=12)
+    ax2.xaxis.set_ticks([1e1, 1e3, 1e5, 1e7])
+    ax2.yaxis.set_ticks([1e-3, 1e-2, 1e-1, 1e0])
     
-    ax3.loglog(surfacedensityam_TQM/Rg,densityden_TQM,lw=3,label='TQM',c='r')
-    ax3.loglog(surfacedensityam_SG/Rg,densityden_SG,lw=3,c='b')
+    ax3.loglog(surfacedensityam_TQM/Rg,densityden_TQM,lw=lwid,label='TQM',c='r')
+    ax3.loglog(surfacedensityam_SG/Rg,densityden_SG,lw=lwid,c='b')
     ax3.set_xlabel('$a$ [$R_g$]',fontsize=14)
     ax3.set_ylabel('$ρ$ [$g/cm^{3}$]',fontsize=14)
     ax3.xaxis.set_tick_params(labelsize=12)
     ax3.yaxis.set_tick_params(labelsize=12)
+    ax3.xaxis.set_ticks([1e1, 1e3, 1e5, 1e7])
+    ax3.yaxis.set_ticks([1e-20, 1e-17, 1e-14, 1e-11, 1e-8])
+    #ax3.yaxis.set_label_position("right")
+    #ax3.yaxis.tick_right()
     
     plt.savefig('plots/propertyplots/Disk-Profile.pdf')
     plt.savefig('plots/paperplots/Disk-Profile.pdf')
@@ -137,7 +147,7 @@ def stitch_plot_stellar():
     ax1.set_xlabel('$a$ [$R_g$]', fontsize=12)
     ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
     ax1.set_xlim([3e0,3e7])
-    ax1.set_ylim([1e0,1e19])
+    ax1.set_ylim([2e-1,1e19])
     
     ax3=plt.subplot(222)
     ax3.plot(amrange_TQM/Rg,Tcaprgianta_TQM,'r:',lw=uplimw,label='Red Giant',c='crimson')
@@ -195,7 +205,7 @@ def stitch_plot_stellar():
     ax3.set_xlabel('$a$ [$R_g$]', fontsize=12)
     #ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
     ax3.set_xlim([4e1,6e7])
-    ax3.set_ylim([1e0,1e19])
+    ax3.set_ylim([2e-1,1e19])
     ax3.yaxis.tick_right()
     
     ax2=plt.subplot(223)
@@ -235,6 +245,10 @@ def stitch_plot_stellar():
     ax4.plot(ideg4_TQM,Tcapmstari_TQM,'r-',lw=uplimw, label='M Dwarf',c='darkorange')
     ax4.plot(capturedata_i_mstar_TQM[0], capturedata_i_mstar_TQM[1],'*',label='M Dwarf',
         markersize=12, markerfacecolor='darkorange', markeredgewidth=0.1, markeredgecolor='k')
+    #
+    ax4.plot(capturedata_i_gstar_TQM[0], capturedata_i_gstar_TQM[1],'*',
+        markersize=12, markerfacecolor='gold', markeredgewidth=0.1, markeredgecolor='k')
+    #
     #matplotlib.pyplot.annotate('$a_{0} = 10^{4}~R_g$', (0,1e5))
     matplotlib.pyplot.annotate('AGN lifetime', (73,3.5e7)) # rad: (1.3,2*10**5)  deg: (73,2*10**5)
     ax4.add_patch(lifetimei4)
@@ -478,21 +492,78 @@ def stitch_plot_sBH():
 '''defining plotting functions, etc, for characteristics of each model'''
 '''Everything depends soley on the model'''
 #########################################################
+def hprofile_plot():
+    lwid=2
+    fig=plt.figure(figsize=(6,4.5))
+    plt.subplots_adjust(left=0.15, right=0.99, top=0.935, bottom=0.12)
+    
+    ax1 = plt.subplot(111)
+    ax1.plot(harg_SG,h_SG/Rg/2,label='SG',lw=lwid,c='b')
+    ax1.plot(harg_TQM,h_TQM/Rg/2,label='TQM',lw=lwid,c='r')
+    ax1.plot(-harg_TQM,-h_TQM/Rg/2,lw=lwid,c='r')
+    ax1.plot(-harg_TQM,h_TQM/Rg/2,lw=lwid,c='r')
+    ax1.plot(harg_TQM,-h_TQM/Rg/2,lw=lwid,c='r')
+    ax1.plot(harg_SG,h_SG/Rg/2,lw=lwid,c='b') #,label='SG'
+    ax1.plot(-harg_SG,-h_SG/Rg/2,lw=lwid,c='b')
+    ax1.plot(-harg_SG,h_SG/Rg/2,lw=lwid,c='b')
+    ax1.plot(harg_SG,-h_SG/Rg/2,lw=lwid,c='b')
+    ax1.axhline(y=0,lw=1,linestyle="--",c='black')
+    ax1.plot([0,10**4],[0,10**5],'r:',lw=1,c='black')
+    ax1.plot(0,0,'o',markersize=15,c='black')
+    ax1.plot(10**4,10**5,'*',markersize=8, markeredgewidth=0.1, markeredgecolor='k', c='black')
+    #matplotlib.pyplot.annotate('$a$', (1e2,1e3),fontsize=12) #labeling orbital radius
+    #matplotlib.pyplot.annotate('$i$', (1e1,1e1),fontsize=12) #labeling orbital inclination
+    ax1.set_xlabel('$a$ [$R_g$]',fontsize=14)
+    ax1.set_ylabel('$H$ [$R_g$]',fontsize=14)
+    ax1.legend(fontsize=10, framealpha=1, edgecolor= 'k', handlelength=4, 
+               ncol=2, columnspacing=2, loc='center left', bbox_to_anchor=(-0.015,1.04))
+    ax1.set_yscale('symlog')
+    ax1.set_xscale('symlog')
+    #ax1.xaxis.set_tick_params(labelsize=12)
+    #ax1.yaxis.set_tick_params(labelsize=12)
+    ax1.xaxis.set_ticks([-1e7, -1e5, -1e3, -1e1, 0, 1e1, 1e3, 1e5, 1e7])
+    ax1.yaxis.set_ticks([-1e7, -1e5, -1e3, -1e1, 0, 1e1, 1e3, 1e5, 1e7])
+    ax1.set_xlim([-1e8,1e8])
+    plt.savefig('plots/propertyplots/disk-heightprofile.pdf')
+    
 #(a,h/a) 
 #(h/a) ratio of distances plot function
 def hovera_plot(): 
-    logPlot=plt.gca()
-    #logPlot.loglog(harg_SG,hovera_SG,lw=2,label='SG',c='b')
-    logPlot.loglog(harg_TQM,hovera_TQM,lw=2,label='TQM',c='r')
-    logPlot.loglog(harg_SG,hovera_SG,lw=2,c='b')
-    #plt.title('Height Ratio')
-    logPlot.set_xlabel('$a$ [$R_g$]')
-    logPlot.set_ylabel('$H$ / $a$')# [$m/m$]')
-    #logPlot.legend()
-    #ax = plt.subplot(111)
-    #ax.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8, 
-    #          ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0.68,0.05))
-    plt.savefig('plots/propertyplots/Height Ratio.pdf')
+    lwid=2
+    fig=plt.figure(figsize=(6,3.6))
+    plt.subplots_adjust(left=0.15, right=0.99, top=0.98, bottom=0.15)
+    
+    ax1 = plt.subplot(111)    
+    ax1.plot(harg_TQM,hovera_TQM,lw=lwid,label='TQM',c='r')
+    ax1.plot(harg_SG,hovera_SG,lw=lwid,label='SG',c='b')
+    ax1.set_xlabel('$a$ [$R_g$]', fontsize=14)
+    ax1.set_ylabel('$H$ / $a$', fontsize=14) # [$m/m$]
+    ax1.set_yscale('log')
+    ax1.set_xscale('log')
+    plt.savefig('plots/propertyplots/disk-heightratio.pdf')
+    
+#(a,density) 
+#(density) disk density plot function
+def density_plot(): 
+    lwid=2
+    fig=plt.figure(figsize=(6,3.6))
+    plt.subplots_adjust(left=0.15, right=0.99, top=0.98, bottom=0.15)
+    
+    densityden_TQM=[]
+    densityden_SG=[]
+    for i in range(len(surfacedensityam_TQM)):
+        densityden_TQM.append(density_TQM(surfacedensityam_TQM[i])/1e3)
+    for i in range(len(surfacedensityam_SG)):
+        densityden_SG.append(density_SG(surfacedensityam_SG[i])/1e3)
+    
+    ax1 = plt.subplot(111)    
+    ax1.plot(surfacedensityam_TQM/Rg,densityden_TQM,lw=lwid,label='TQM',c='r')
+    ax1.plot(surfacedensityam_SG/Rg,densityden_SG,lw=lwid,label='SG',c='b')
+    ax1.set_xlabel('$a$ [$R_g$]', fontsize=14)
+    ax1.set_ylabel('$ρ$ [$g/cm^{3}$]', fontsize=14) # $density$ [$kg/m^3$]
+    ax1.set_yscale('log')
+    ax1.set_xscale('log')
+    plt.savefig('plots/propertyplots/disk-densityprofile.pdf')
 #########################################################   
 #(a,h)
 #(h) disk thickness plot function
@@ -572,28 +643,7 @@ def surfacedensityint_plot(): # (a,surfacedensity) & (a,surfacedensityint) compa
               ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0.63,0.9))
     plt.savefig('plots/propertyplots/Surface Density interpolated.pdf')
 #########################################################
-#(a,density) 
-#(density) disk density plot function
-def density_plot(): 
-    #creating a list of values for (density) disk density
-    densityden_TQM=[]
-    for i in range(len(surfacedensityam_TQM)):
-        densityden_TQM.append(density_TQM(surfacedensityam_TQM[i])/1e3)
-    densityden_SG=[]
-    for i in range(len(surfacedensityam_SG)):
-        densityden_SG.append(density_SG(surfacedensityam_SG[i])/1e3)
-    logPlot=plt.gca()
-    #logPlot.loglog(surfacedensityam_SG/Rg,densityden_SG,lw=2,label='SG',c='b')
-    logPlot.loglog(surfacedensityam_TQM/Rg,densityden_TQM,lw=2,label='TQM',c='r')
-    logPlot.loglog(surfacedensityam_SG/Rg,densityden_SG,lw=2,c='b')
-    #plt.title('Density')
-    logPlot.set_xlabel('$a$ [$R_g$]')
-    logPlot.set_ylabel('$ρ$ [$g/cm^{3}$]') #$density$ [$kg/m^3$]
-    #logPlot.legend()
-    #ax = plt.subplot(111)
-    #ax.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8, 
-    #          ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0,0.05))
-    plt.savefig('plots/propertyplots/Density.pdf')
+
 #########################################################
 def vel_plot(): # (a,vel) for i=0 (i.e. no inclination)
     logPlot=plt.gca()
@@ -666,7 +716,7 @@ def Tratio_plot(i): # (a,Tdisk/Torb)
 '''H profiles of disk'''
 #(a,h)
 #(h) disk thickness plot function
-def hprofile_plot():
+def hprofile_color_plot():
     den_TQM=[]
     den_SG=[]
     for i in range(len(ham_TQM)):
@@ -717,12 +767,16 @@ def hprofile_plot():
                ncol=2, columnspacing=2, loc='center left', bbox_to_anchor=(-0.007,1.03))
     ax.set_yscale('symlog')
     ax.set_xscale('symlog')
-    plt.savefig('plots/propertyplots/Height-Profile.pdf')
+    plt.savefig('plots/propertyplots/disk-heightprofile.pdf')
     
+    
+    
+
 #########################################################      
  
-def it_acolor_plot():
-    fig=plt.figure()#figsize=(10,8))
+def fig6():
+    fig=plt.figure(figsize=(6,4))
+    plt.subplots_adjust(left=0.09, right=0.99, top=0.97, bottom=0.125)
     vmin=6e1; vmax=1e6; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
     #norm=plt.Normalize(vmax=vmax, vmin=vmin)
     
@@ -737,71 +791,61 @@ def it_acolor_plot():
         marker='.',label='sBH', c=capturedata_1e6_15_sBH_SG[0]/Rg, cmap='seismic', 
         norm=norm)
     plt.xscale('log')
-    ax1.set_xlabel('$t$ [$yr$]')
-    ax1.set_ylabel('$i$ [$deg$]')
+    ax1.set_xlabel('$t$ [$yr$]', fontsize=14)
+    ax1.set_ylabel('$i$ [$deg$]', fontsize=14)
     ax1.set_xlim([1e3,1e8])
     #ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', 
     #    ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0,0.05))
-    cbaxes = fig.add_axes([0.125, -0.1, 0.79, 0.03]) 
+    cb = plt.colorbar(delta)
+    cb.set_label('$a$ [$R_g$]', fontsize=14)
+    cb.ax.set_yscale('log')
+    plt.savefig('plots/propertyplots/sBH-i_t_SG.pdf')
+
+def it_acolor_plot(): #this one
+    fig=plt.figure(figsize=(12,5))
+    vmin=1.5e1; vmax=1e6; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
+    #norm=plt.Normalize(vmax=vmax, vmin=vmin)
+    plt.subplots_adjust(left=0.05, right=0.96, top=0.98, bottom=0.25, wspace=0)
+    
+    ax1=plt.subplot(121)
+    ax1.scatter(capturedata_1e6_45_rgiant_SG[3],capturedata_1e6_45_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_SG[0]/Rg, cmap='ocean_r',
+        norm=norm)
+    delta=ax1.scatter(capturedata_1e6_45_sBH_SG[3],capturedata_1e6_45_sBH_SG[1],
+        marker='.',label='sBH', c=capturedata_1e6_45_sBH_SG[0]/Rg, cmap='ocean_r', #plasma_r
+        norm=norm)
+    matplotlib.pyplot.annotate('rgiant', (2e8,10))
+    matplotlib.pyplot.annotate('sBH', (4e9,10))
+    plt.xscale('log')
+    
+    ax2=plt.subplot(122)
+    ax2.scatter(capturedata_1e6_45_rgiant_TQM[3],capturedata_1e6_45_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_TQM[0]/Rg, cmap='ocean_r',
+        norm=norm)
+    ax2.scatter(capturedata_1e6_45_sBH_TQM[3],capturedata_1e6_45_sBH_TQM[1],
+        marker='.',label='sBH', c=capturedata_1e6_45_sBH_TQM[0]/Rg, cmap='ocean_r',
+        norm=norm)
+    matplotlib.pyplot.annotate('rgiant', (2e8,10))
+    matplotlib.pyplot.annotate('sBH', (4e9,10))
+    plt.xscale('log')
+    
+    ax1.set_xlim([3e6,2e10])
+    ax2.set_xlim([3e6,2e10])
+    ax1.set_xlabel('$t$ [$yr$]')
+    ax2.set_xlabel('$t$ [$yr$]')
+    ax1.set_ylabel('$i$ [$deg$]')
+    ax2.yaxis.tick_right()
+    
+    cbaxes = fig.add_axes([0.05, 0.1, 0.917, 0.03]) 
     cb = plt.colorbar(delta, cax = cbaxes, orientation='horizontal') 
-    cb.ax.invert_xaxis() 
     cb.set_label('a [Rg]')
+    cb.ax.invert_xaxis()
     cb.ax.set_xscale('log')
-    plt.savefig('plots/propertyplots/it_gaia.pdf')
-
-def it_acolor_plot_SG():
-    fig=plt.figure()
-    vmin=6e1; vmax=1e6; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
-    #norm=plt.Normalize(vmax=vmax, vmin=vmin)
-    
-    ax=plt.subplot(111)
-    ax.scatter(capturedata_1e6_45_rgiant_SG[3],capturedata_1e6_45_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_SG[0]/Rg, cmap='seismic',
-        norm=norm)
-    delta=ax.scatter(capturedata_1e6_45_sBH_SG[3],capturedata_1e6_45_sBH_SG[1],
-        marker='.',label='sBH', c=capturedata_1e6_45_sBH_SG[0]/Rg, cmap='seismic', #plasma_r
-        norm=norm)
-    
-    matplotlib.pyplot.annotate('rgiant', (2e8,10))
-    matplotlib.pyplot.annotate('sBH', (4e9,10))
-    
-    cb=plt.colorbar(delta)#,ticks=[1e2,1e5,1e6])
-    cb.set_label('a [Rg]')
-    cb.ax.set_yscale('log')
-    plt.xscale('log')
-    ax.set_xlabel('$t$ [$yr$]')
-    ax.set_ylabel('$i$ [$deg$]')
-    ax.set_xlim([3e6,2e10])
-    #ax.legend(fontsize=8, framealpha=1, edgecolor= 'k', 
+    #ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', 
     #    ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0,0.05))
-    plt.savefig('plots/propertyplots/it_SG.pdf')
-
-def it_acolor_plot_TQM():
-    fig=plt.figure()
-    vmin=6e1; vmax=1e6; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
-    #norm=plt.Normalize(vmax=vmax, vmin=vmin)
     
-    ax=plt.subplot(111)    
-    ax.scatter(capturedata_1e6_45_rgiant_TQM[3],capturedata_1e6_45_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_TQM[0]/Rg, cmap='seismic',
-        norm=norm)
-    delta=ax.scatter(capturedata_1e6_45_sBH_TQM[3],capturedata_1e6_45_sBH_TQM[1],
-        marker='.',label='sBH', c=capturedata_1e6_45_sBH_TQM[0]/Rg, cmap='seismic',
-        norm=norm)
-  
-    matplotlib.pyplot.annotate('rgiant', (2e8,10))
-    matplotlib.pyplot.annotate('sBH', (4e9,10))
-    
-    cb=plt.colorbar(delta)#,ticks=[1e2,1e5,1e6])
-    cb.set_label('a [Rg]')
-    cb.ax.set_yscale('log')
-    plt.xscale('log')
-    ax.set_xlabel('$t$ [$yr$]')
-    ax.set_ylabel('$i$ [$deg$]')
-    ax.set_xlim([3e6,2e10])
-    #ax.legend(fontsize=8, framealpha=1, edgecolor= 'k', 
-    #    ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0,0.05))
-    plt.savefig('plots/propertyplots/it_TQM.pdf')    
+    plt.savefig('plots/propertyplots/it.pdf')
+    plt.savefig('plots/propertyplots/it.jpeg')
     
 def at_plot():
     fig=plt.figure(figsize=(10,8))
@@ -964,6 +1008,151 @@ def wi_plot():
     plt.yscale('log')
     plt.savefig('plots/propertyplots/wi.pdf')
 
+    
+def stitch_plot_fw():
+    fig=plt.figure(figsize=(12,12))
+    plt.subplots_adjust(left=0.06, right=0.94, top=0.95, bottom=0.06, wspace=0, hspace=0)
+    
+    irange=ivals(1e6*Rg,hint_SG)
+    a_Fdrag_BHL_SG=[]
+    a_Fdrag_BHL_TQM=[]
+    a_Fdrag_STO_SG=[]
+    a_Fdrag_STO_TQM=[]
+    i_Fdrag_BHL_SG=[]
+    i_Fdrag_BHL_TQM=[]
+    i_Fdrag_STO_SG=[]
+    i_Fdrag_STO_TQM=[]
+    a_Wdrag_BHL_SG=[]
+    a_Wdrag_BHL_TQM=[]
+    a_Wdrag_STO_SG=[]
+    a_Wdrag_STO_TQM=[]
+    i_Wdrag_BHL_SG=[]
+    i_Wdrag_BHL_TQM=[]
+    i_Wdrag_STO_SG=[]
+    i_Wdrag_STO_TQM=[]
+    for i in range(len(surfacedensityam_SG)):
+            a_Fdrag_BHL_SG.append(F_BHL(45/degrees,surfacedensityam_SG[i],
+                                      rBH(45/degrees,surfacedensityam_SG[i]),density_SG))
+            a_Fdrag_STO_SG.append(F_STO(45/degrees,surfacedensityam_SG[i],rrgiant,density_SG))
+    for j in range(len(surfacedensityam_TQM)):        
+            a_Fdrag_BHL_TQM.append(F_BHL(45/degrees,surfacedensityam_TQM[j],
+                                       rBH(45/degrees,surfacedensityam_TQM[j]),density_TQM))
+            a_Fdrag_STO_TQM.append(F_STO(45/degrees,surfacedensityam_TQM[j],rrgiant,density_TQM))
+    for i in range(len(irange)):
+            i_Fdrag_BHL_SG.append(F_BHL(irange[i],1e6*Rg,rBH(irange[i],1e6*Rg),density_SG))
+            i_Fdrag_BHL_TQM.append(F_BHL(irange[i],1e6*Rg,rBH(irange[i],1e6*Rg),density_TQM))
+            i_Fdrag_STO_SG.append(F_STO(irange[i],1e6*Rg,rrgiant,density_SG))
+            i_Fdrag_STO_TQM.append(F_STO(irange[i],1e6*Rg,rrgiant,density_TQM))
+    for i in range(len(surfacedensityam_SG)):
+            a_Wdrag_BHL_SG.append(Worb_BHL(45/degrees,surfacedensityam_SG[i],
+                                         rBH(45/degrees,surfacedensityam_SG[i]),density_SG,hint_SG))
+            a_Wdrag_STO_SG.append(Worb_STO(45/degrees,surfacedensityam_SG[i],
+                                         rrgiant,density_SG,hint_SG))
+    for i in range(len(surfacedensityam_TQM)):
+            a_Wdrag_BHL_TQM.append(Worb_BHL(45/degrees,surfacedensityam_TQM[i],
+                                          rBH(45/degrees,surfacedensityam_SG[i]),density_TQM,hint_TQM))
+            a_Wdrag_STO_TQM.append(Worb_STO(45/degrees,surfacedensityam_TQM[i],
+                                          rrgiant,density_TQM,hint_TQM))
+    for i in range(len(irange)):
+            i_Wdrag_BHL_SG.append(Worb_BHL(irange[i],1e6*Rg,
+                                         rBH(irange[i],1e6*Rg),density_SG,hint_SG))
+            i_Wdrag_BHL_TQM.append(Worb_BHL(irange[i],1e6*Rg,
+                                          rBH(irange[i],1e6*Rg),density_TQM,hint_TQM))
+            i_Wdrag_STO_SG.append(Worb_STO(irange[i],1e6*Rg,rrgiant,density_SG,hint_SG))
+            i_Wdrag_STO_TQM.append(Worb_STO(irange[i],1e6*Rg,rrgiant,density_TQM,hint_TQM))
+    
+    ax1=plt.subplot(221)
+    matplotlib.pyplot.annotate('$i = 45^{\circ}$', (5e6,1e31))
+    ax1.plot(surfacedensityam_TQM/Rg,a_Fdrag_BHL_TQM,'r:',label='$F_{BHL}$, TQM',c='k')
+    ax1.plot(surfacedensityam_SG/Rg,a_Fdrag_BHL_SG,'r-',label='$F_{BHL}$, SG',c='k')
+    ax1.plot(surfacedensityam_TQM/Rg,a_Fdrag_STO_TQM,'r:',label='$F_{GEO}$, TQM',c='r')
+    ax1.plot(surfacedensityam_SG/Rg,a_Fdrag_STO_SG,'r-',label='$F_{GEO}$, SG',c='r')
+    #ax1.set_title('F')
+    ax1.set_xlabel('$a$ [$Rg$]')
+    ax1.set_ylabel('$F$ [$N$]')
+    ax1.xaxis.tick_top()
+    plt.xscale('log')
+    plt.yscale('log')
+    
+    ax2=plt.subplot(222)
+    matplotlib.pyplot.annotate('$a = 10^{6}~R_g$', (77,1e24))
+    ax2.plot(irange*degrees,i_Fdrag_BHL_TQM,'r:',label='$F_{BHL}$, TQM',c='k')
+    ax2.plot(irange*degrees,i_Fdrag_BHL_SG,'r-',label='$F_{BHL}$, SG,',c='k')
+    ax2.plot(irange*degrees,i_Fdrag_STO_TQM,'r:',label='$F_{GEO}$, TQM',c='r')
+    ax2.plot(irange*degrees,i_Fdrag_STO_SG,'r-',label='$F_{GEO}$, SG,',c='r')
+    #ax2.set_title('F')
+    ax2.set_xlabel('$i$ [$deg$]')
+    ax2.set_ylabel('$F$ [$N$]')
+    ax2.xaxis.tick_top()
+    ax2.yaxis.tick_right()
+    ax2.yaxis.set_label_position("right")
+    plt.yscale('log')
+    
+    ax3=plt.subplot(223)
+    matplotlib.pyplot.annotate('$i = 45^{\circ}$', (5e6,1e43))
+    ax3.plot(surfacedensityam_TQM/Rg,a_Wdrag_BHL_TQM,'r:',label='$F_{BHL}$, TQM',c='k')
+    ax3.plot(surfacedensityam_SG/Rg,a_Wdrag_BHL_SG,'r-',label='$F_{BHL}$, SG,',c='k')
+    ax3.plot(surfacedensityam_TQM/Rg,a_Wdrag_STO_TQM,'r:',label='$F_{GEO}$, TQM',c='r')
+    ax3.plot(surfacedensityam_SG/Rg,a_Wdrag_STO_SG,'r-',label='$F_{GEO}$, SG,',c='r')
+    #ax3.set_title('W')
+    ax3.set_xlabel('$a$ [$Rg$]')
+    ax3.set_ylabel('$W$ [$J$]')
+    plt.xscale('log')
+    plt.yscale('log')
+    
+    ax4=plt.subplot(224)
+    matplotlib.pyplot.annotate('$a = 10^{6}~R_g$', (77,3e40))
+    ax4.plot(irange*degrees,i_Wdrag_BHL_TQM,'r:',label='$F_{BHL}$, TQM',c='k')
+    ax4.plot(irange*degrees,i_Wdrag_BHL_SG,'r-',label='$F_{BHL}$, SG,',c='k')
+    ax4.plot(irange*degrees,i_Wdrag_STO_TQM,'r:',label='$F_{GEO}$, TQM',c='r')
+    ax4.plot(irange*degrees,i_Wdrag_STO_SG,'r-',label='$F_{GEO}$, SG,',c='r')
+    #ax4.set_title('W', fontsize=12)
+    ax4.set_xlabel('$i$ [$deg$]', fontsize=12)
+    ax4.set_ylabel('$W$ [$J$]', fontsize=12)
+    ax4.yaxis.tick_right()
+    ax4.yaxis.set_label_position("right")
+    plt.yscale('log')
+    ax4.legend(fontsize=8, framealpha=1, edgecolor= 'k', 
+               ncol=4, columnspacing=0.5, loc='center left', bbox_to_anchor=(-0.35,1))
+    
+    plt.savefig('plots/propertyplots/fw.pdf')
+    plt.savefig('plots/paperplots/fw.pdf')
+    
+    
+def fwt_plot():
+    fig=plt.figure(figsize=(10,16))
+    plt.subplots_adjust(left=0.13, right=0.98, top=0.92, bottom=0.06, hspace=0)
+    
+    ax1=plt.subplot(211)
+    ax1.plot(capturedata_1e6_45_sBH_TQM[3],Fdrag_BHL_TQM,'r:',label='$F_{BHL}$, TQM',c='k')
+    ax1.plot(capturedata_1e6_45_sBH_SG[3],Fdrag_BHL_SG,'r-',label='$F_{BHL}$, SG',c='k')
+    ax1.plot(capturedata_1e6_45_rgiant_TQM[3],Fdrag_STO_TQM,'r:',label='$F_{GEO}$, TQM',c='r')
+    ax1.plot(capturedata_1e6_45_rgiant_SG[3],Fdrag_STO_SG,'r-',label='$F_{GEO}$, SG',c='r')
+    ax1.set_xlabel('$t$ [$yr$]', fontsize=12)
+    ax1.set_ylabel('$F$ [$N$]', fontsize=12)
+    ax1.xaxis.tick_top()
+    #ax1.xaxis.set_label_position("top")
+    plt.xscale('log')
+    plt.yscale('log')
+    ax1.legend(fontsize=10, framealpha=1, edgecolor= 'k', 
+                   ncol=4, columnspacing=2.1, loc='center left', bbox_to_anchor=(-0.01,1.13))
+    
+    ax2=plt.subplot(212)
+    ax2.plot(capturedata_1e6_45_sBH_TQM[3],Wdrag_BHL_TQM,'r:',label='$F_{BHL}$, TQM',c='k')
+    ax2.plot(capturedata_1e6_45_sBH_SG[3],Wdrag_BHL_SG,'r-',label='$F_{BHL}$, SG',c='k')
+    ax2.plot(capturedata_1e6_45_rgiant_TQM[3],Wdrag_STO_TQM,'r:',label='$F_{GEO}$, TQM',c='r')
+    ax2.plot(capturedata_1e6_45_rgiant_SG[3],Wdrag_STO_SG,'r-',label='$F_{GEO}$, SG',c='r')
+    ax2.set_xlabel('$t$ [$yr$]', fontsize=12)
+    ax2.set_ylabel('$W$ [$J$]', fontsize=12)
+    #ax2.yaxis.set_label_position("right")
+    #ax2.yaxis.tick_right()
+    plt.xscale('log')
+    plt.yscale('log')
+    #ax2.legend(fontsize=10, framealpha=1, edgecolor= 'k', 
+    #               ncol=4, columnspacing=2.1, loc='center left', bbox_to_anchor=(-0.01,-0.25))
+    
+    plt.savefig('plots/propertyplots/fwt.pdf')
+    
 def ft_plot():
     fig=plt.figure(figsize=(10,8))
     
@@ -1068,9 +1257,6 @@ def plot_vrel_t(x,y,label):
 #####################################################
 #####################################################
 def plot_Tcap_a_stellar(name): # (a,Tcap)
-    
-    fig=plt.figure()   
-    
     uplimw=2.5
     delaw=0.75
     acapw=0.2
@@ -1091,6 +1277,9 @@ def plot_Tcap_a_stellar(name): # (a,Tcap)
     lifetimea3=matplotlib.patches.Rectangle((0,10**5), widtha, heighta, angle=0.0, facecolor='lightgrey',alpha=0.5)
     
     if (name in SG) == True: 
+        fig=plt.figure(figsize=(6,4))
+        plt.subplots_adjust(right=0.99, top=0.89, bottom=0.13)
+    
         ax1=plt.subplot(111)
         ax1.plot(amrange_SG/Rg,Tcaprgianta_SG,'r:',lw=uplimw,label='Red Giant',c='crimson')
         ax1.plot([capturedata_a_rgiant_SG[0],capturedata_a_rgiant_SG[1]],
@@ -1140,16 +1329,19 @@ def plot_Tcap_a_stellar(name): # (a,Tcap)
         matplotlib.pyplot.annotate('$i_{0} = 45^{\circ}$', (5e0,5e17))
         matplotlib.pyplot.annotate('AGN lifetime', (1*10**6,1e7))
         ax1.add_patch(lifetimea1)
-        ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8,
-            ncol=5, columnspacing=1.4, loc='center left', bbox_to_anchor=(-0.012,1.08))
+        ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8, handletextpad=1,
+            ncol=5, columnspacing=2.4, loc='center left', bbox_to_anchor=(-0.012,1.07))
         plt.xscale('log')
         plt.yscale('log')
-        ax1.set_xlabel('$a$ [$R_g$]', fontsize=12)
-        ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax1.set_xlabel('$a$ [$R_g$]', fontsize=14)
+        ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax1.set_xlim([3e0,3e7])
         #ax1.set_ylim([1e2,1e14])
 
     if (name in TQM) == True:
+        fig=plt.figure(figsize=(6,3.6))
+        plt.subplots_adjust(right=0.99, top=0.99, bottom=0.15)
+        
         ax3=plt.subplot(111)
         ax3.plot(amrange_TQM/Rg,Tcaprgianta_TQM,'r:',lw=uplimw,label='Red Giant',c='crimson')
         ax3.plot([capturedata_a_rgiant_TQM[0],capturedata_a_rgiant_TQM[1]],
@@ -1199,12 +1391,10 @@ def plot_Tcap_a_stellar(name): # (a,Tcap)
         #matplotlib.pyplot.annotate('$i_{0} = 45^{\circ}$', (6e1,5e17))
         matplotlib.pyplot.annotate('AGN lifetime', (3*10**6,1e7))
         ax3.add_patch(lifetimea3)
-        #ax3.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8,
-        #    ncol=5, columnspacing=1.4, loc='center left', bbox_to_anchor=(-0.012,1.08))
         plt.xscale('log')
         plt.yscale('log')
-        ax3.set_xlabel('$a$ [$R_g$]', fontsize=12)
-        ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax3.set_xlabel('$a$ [$R_g$]', fontsize=14)
+        ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax3.set_xlim([4e1,6e7])
         #ax3.set_ylim([1e2,1e14])
 
@@ -1212,8 +1402,6 @@ def plot_Tcap_a_stellar(name): # (a,Tcap)
     plt.savefig('plots/paperplots/stellar-Tcap_a_'+name+'.pdf')
 #####################################################
 def plot_Tcap_i_stellar(name): # (i,Tcap)
-    fig=plt.figure()   
-    
     uplimw=2.5
     delaw=0.75
     acapw=0.2
@@ -1234,6 +1422,9 @@ def plot_Tcap_i_stellar(name): # (i,Tcap)
     lifetimei4=matplotlib.patches.Rectangle((-180,10**5), widthi, heighti, angle=0.0, facecolor='lightgrey',alpha=0.5)
     
     if (name in SG) == True:
+        fig=plt.figure(figsize=(6,4))
+        plt.subplots_adjust(right=0.99, top=0.89, bottom=0.135)
+        
         ax2=plt.subplot(111)
         ax2.plot(ideg4_SG,Tcaprgianti_SG,'r:',lw=uplimw, label='Red Giant',c='crimson')
         ax2.plot(capturedata_i_rgiant_SG[0],capturedata_i_rgiant_SG[1],'*',label='Red Giant',
@@ -1247,18 +1438,21 @@ def plot_Tcap_i_stellar(name): # (i,Tcap)
         ax2.plot(ideg4_SG,Tcapmstari_SG,'r-',lw=uplimw, label='M Dwarf',c='darkorange')
         ax2.plot(capturedata_i_mstar_SG[0], capturedata_i_mstar_SG[1],'*',label='M Dwarf',
             markersize=12, markerfacecolor='darkorange', markeredgewidth=0.1, markeredgecolor='k')
-        matplotlib.pyplot.annotate('$a_{0} = 10^{4}~R_g$', (3,5e2))
+        matplotlib.pyplot.annotate('$a_{0} = 10^{4}~R_g$', (0,5e2))
         matplotlib.pyplot.annotate('AGN lifetime', (73,3e7)) # rad: (1.3,2*10**5)  deg: (73,2*10**5)
         ax2.add_patch(lifetimei2)
-        ax2.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8,
-        ncol=4, columnspacing=3.75, loc='center left', bbox_to_anchor=(-0.012,1.08))
+        ax2.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8, handletextpad=1,
+        ncol=4, columnspacing=5.1, loc='center left', bbox_to_anchor=(-0.012,1.07))
         plt.yscale('log')
-        ax2.set_xlabel('$i$ [$deg$]', fontsize=12)
-        ax2.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax2.set_xlabel('$i$ [$deg$]', fontsize=14)
+        ax2.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax2.set_xlim([-2,92])
         #    ax2.set_ylim([1e0,1e14])
         
     if (name in TQM) == True:
+        fig=plt.figure(figsize=(6,3.6))
+        plt.subplots_adjust(right=0.99, top=0.98, bottom=0.15)
+        
         ax4=plt.subplot(111)    
         ax4.plot(ideg4_TQM,Tcaprgianti_TQM,'r:',lw=uplimw, label='Red Giant',c='crimson')
         ax4.plot(capturedata_i_rgiant_TQM[0],capturedata_i_rgiant_TQM[1],'*',label='Red Giant',
@@ -1272,14 +1466,14 @@ def plot_Tcap_i_stellar(name): # (i,Tcap)
         ax4.plot(ideg4_TQM,Tcapmstari_TQM,'r-',lw=uplimw, label='M Dwarf',c='darkorange')
         ax4.plot(capturedata_i_mstar_TQM[0], capturedata_i_mstar_TQM[1],'*',label='M Dwarf',
             markersize=12, markerfacecolor='darkorange', markeredgewidth=0.1, markeredgecolor='k')
+        ax4.plot(capturedata_i_gstar_TQM[0], capturedata_i_gstar_TQM[1],'*',
+        markersize=12, markerfacecolor='gold', markeredgewidth=0.1, markeredgecolor='k')
         #matplotlib.pyplot.annotate('$a_{0} = 10^{4}~R_g$', (0,1e5))
         matplotlib.pyplot.annotate('AGN lifetime', (73,3.5e7)) # rad: (1.3,2*10**5)  deg: (73,2*10**5)
         ax4.add_patch(lifetimei4)
-        #    ax4.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8,
-        #    ncol=4, columnspacing=3.75, loc='center left', bbox_to_anchor=(-0.012,1.08))
         plt.yscale('log')
-        ax4.set_xlabel('$i$ [$deg$]', fontsize=12)
-        ax4.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax4.set_xlabel('$i$ [$deg$]', fontsize=14)
+        ax4.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax4.set_xlim([-2,92])
         #    ax4.set_ylim([1e0,1e14])
     
@@ -1289,9 +1483,6 @@ def plot_Tcap_i_stellar(name): # (i,Tcap)
     
 #########################################################
 def plot_Tcap_a_sBH(name): # (a,Tcap)
-    
-    fig=plt.figure()  
-    
     uplimw=2.5
     delaw=0.75
     acapw=0.2
@@ -1312,6 +1503,9 @@ def plot_Tcap_a_sBH(name): # (a,Tcap)
     lifetimea3=matplotlib.patches.Rectangle((0,10**5), widtha, heighta, angle=0.0, facecolor='lightgrey',alpha=0.5)
     
     if (name in SG) == True:
+        fig=plt.figure(figsize=(6,4))
+        plt.subplots_adjust(right=0.99, top=0.89, bottom=0.13)
+    
         ax1=plt.subplot(111)
         ax1.plot(amrange_SG/Rg,Tcap05deg_SG,'r-',lw=uplimw,label='$5^{\circ}$',c='darkgreen')
         ax1.plot([capturedata_5_sBH_SG[0],capturedata_5_sBH_SG[1]],
@@ -1364,16 +1558,19 @@ def plot_Tcap_a_sBH(name): # (a,Tcap)
         
         matplotlib.pyplot.annotate('AGN lifetime', (1*10**6,1e7))
         ax1.add_patch(lifetimea1)
-        ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8,
-        ncol=7, columnspacing=0.65, loc='center left', bbox_to_anchor=(-0.012,1.08))
+        ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8, handletextpad=0.4,
+        ncol=7, columnspacing=1.95, loc='center left', bbox_to_anchor=(-0.012,1.07))
         plt.xscale('log')
         plt.yscale('log')
-        ax1.set_xlabel('$a$ [$R_g$]', fontsize=12)
-        ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax1.set_xlabel('$a$ [$R_g$]', fontsize=14)
+        ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax1.set_xlim([3e0,3e7])
         #    ax1.set_ylim([1e2,1e14])
     if (name in TQM) == True:
-        ax3=plt.subplot(111)        
+        fig=plt.figure(figsize=(6,3.6))
+        plt.subplots_adjust(right=0.99, top=0.99, bottom=0.15)
+        
+        ax3=plt.subplot(111)
         ax3.plot(amrange_TQM/Rg,Tcap05deg_TQM,'r-',lw=uplimw,label='$5^{\circ}$',c='darkgreen')
         ax3.plot([capturedata_5_sBH_TQM[0],capturedata_5_sBH_TQM[1]],
         [capturedata_5_sBH_TQM[2],capturedata_5_sBH_TQM[2]],'r:', lw=delaw,c='k')
@@ -1421,12 +1618,10 @@ def plot_Tcap_a_sBH(name): # (a,Tcap)
             markersize=7, markerfacecolor='k', markeredgewidth=acapw, markeredgecolor='brown')
         matplotlib.pyplot.annotate('AGN lifetime', (3*10**6,1e7))
         ax3.add_patch(lifetimea3)
-        #    ax3.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=2.8,
-        #    ncol=7, columnspacing=0.65, loc='center left', bbox_to_anchor=(-0.012,1.08))
         plt.xscale('log')
         plt.yscale('log')
-        ax3.set_xlabel('$a$ [$R_g$]', fontsize=12)
-        ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax3.set_xlabel('$a$ [$R_g$]', fontsize=14)
+        ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax3.set_xlim([4e1,6e7])
         #    ax3.set_ylim([1e2,1e14])
     
@@ -1434,9 +1629,6 @@ def plot_Tcap_a_sBH(name): # (a,Tcap)
     plt.savefig('plots/paperplots/sBH-Tcap_a_'+name+'.pdf')
 #########################################################
 def plot_Tcap_i_sBH(name): # (i,Tcap) #(am,hint,density,name)
-    
-    fig=plt.figure()
-    
     uplimw=2.5
     delaw=0.75
     acapw=0.2
@@ -1457,6 +1649,9 @@ def plot_Tcap_i_sBH(name): # (i,Tcap) #(am,hint,density,name)
     lifetimei4=matplotlib.patches.Rectangle((-180,10**5), widthi, heighti, angle=0.0, facecolor='lightgrey',alpha=0.5)
     
     if (name in SG) == True:
+        fig=plt.figure(figsize=(6,4))
+        plt.subplots_adjust(right=0.99, top=0.875, bottom=0.13)
+        
         ax2=plt.subplot(111)
         ax2.plot(ideg2_SG,Tcap2Rg_SG,'r--',lw=uplimw,label='$10^{2}~R_g$',c='darkgreen')
         ax2.plot(capturedata_1e2_sBH_SG[0], capturedata_1e2_sBH_SG[1],'*',label='$10^{2}~R_g$', 
@@ -1487,16 +1682,19 @@ def plot_Tcap_i_sBH(name): # (i,Tcap) #(am,hint,density,name)
         ax2.plot(capturedata_1e4_sBH_SG[0], capturedata_1e4_sBH_SG[1],'*',
             markersize=12,markerfacecolor='darkmagenta', markeredgewidth=0.1, markeredgecolor='k')
         ax2.add_patch(lifetimei2)
-        ax2.legend(fontsize=7, framealpha=1, edgecolor= 'k', handlelength=3.2,
-        ncol=6, columnspacing=0.655, loc='center left', bbox_to_anchor=(-0.012,1.08))    
+        ax2.legend(fontsize=8, framealpha=1, edgecolor= 'k', handlelength=3.2, handletextpad=0.5,
+        ncol=6, columnspacing=0.85, loc='center left', bbox_to_anchor=(-0.012,1.085))    
         plt.yscale('log')
-        ax2.set_xlabel('$i$ [$deg$]', fontsize=12)
-        ax2.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax2.set_xlabel('$i$ [$deg$]', fontsize=14)
+        ax2.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax2.set_xlim([-2,92])
         #    ax2.set_ylim([1e-1,1e14])
     
     if (name in TQM) == True:
-        ax4=plt.subplot(111)    
+        fig=plt.figure(figsize=(6,3.55))
+        plt.subplots_adjust(right=0.99, top=0.99, bottom=0.15)
+        
+        ax4=plt.subplot(111)
         ax4.plot(ideg2_TQM,Tcap2Rg_TQM,'r--',lw=uplimw,label='$10^{2}~R_g$',c='darkgreen')
         ax4.plot(capturedata_1e2_sBH_TQM[0], capturedata_1e2_sBH_TQM[1],'*',label='$10^{2}~R_g$', 
             markersize=12,markerfacecolor='darkgreen', markeredgewidth=0.1, markeredgecolor='k')
@@ -1524,11 +1722,9 @@ def plot_Tcap_i_sBH(name): # (i,Tcap) #(am,hint,density,name)
             markersize=12,markerfacecolor='palevioletred', markeredgewidth=0.1, markeredgecolor='k')
         matplotlib.pyplot.annotate('AGN lifetime', (73,1e7)) # rad: (1.3,2*10**5)  deg: (73,2*10**5)
         ax4.add_patch(lifetimei4)
-        #    ax4.legend(fontsize=7, framealpha=1, edgecolor= 'k', handlelength=3.2,
-        #    ncol=6, columnspacing=0.655, loc='center left', bbox_to_anchor=(-0.012,1.08))
         plt.yscale('log')
-        ax4.set_xlabel('$i$ [$deg$]', fontsize=12)
-        ax4.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+        ax4.set_xlabel('$i$ [$deg$]', fontsize=14)
+        ax4.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
         ax4.set_xlim([-2,92])
         #    ax4.set_ylim([1e-1,1e14])
     

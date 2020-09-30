@@ -164,6 +164,7 @@ capturedata_1e5_15_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e5
 capturedata_5e5_15_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_5e5_15_sBH_SG.txt")
 capturedata_1e6_15_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e6_15_sBH_SG.txt")
 
+capturedata_1e4_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e4_30_sBH_SG.txt")
 capturedata_1e5_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e5_30_sBH_SG.txt")
 capturedata_5e5_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_5e5_30_sBH_SG.txt")
 capturedata_1e6_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e6_30_sBH_SG.txt")
@@ -234,6 +235,10 @@ capturedata_15_sBH_SG[1].append(capturedata_1e6_15_sBH_SG[0][len(capturedata_1e6
 capturedata_15_sBH_SG[2].append(capturedata_1e6_15_sBH_SG[3][len(capturedata_1e6_15_sBH_SG[3])-1])
 
 capturedata_30_sBH_SG=[[],[],[]]
+
+capturedata_30_sBH_SG[0].append(capturedata_1e4_30_sBH_SG[0][0]/Rg)
+capturedata_30_sBH_SG[1].append(capturedata_1e4_30_sBH_SG[0][len(capturedata_1e4_30_sBH_SG[0])-1]/Rg)
+capturedata_30_sBH_SG[2].append(capturedata_1e4_30_sBH_SG[3][len(capturedata_1e4_30_sBH_SG[3])-1])
 
 capturedata_30_sBH_SG[0].append(capturedata_1e5_30_sBH_SG[0][0]/Rg)
 capturedata_30_sBH_SG[1].append(capturedata_1e5_30_sBH_SG[0][len(capturedata_1e5_30_sBH_SG[0])-1]/Rg)
@@ -317,6 +322,9 @@ capturedata_1e4_sBH_SG[1].append(capturedata_1e4_5_sBH_SG[3][len(capturedata_1e4
 
 capturedata_1e4_sBH_SG[0].append(capturedata_1e4_15_sBH_SG[1][0])
 capturedata_1e4_sBH_SG[1].append(capturedata_1e4_15_sBH_SG[3][len(capturedata_1e4_15_sBH_SG[3])-1])
+
+capturedata_1e4_sBH_SG[0].append(capturedata_1e4_30_sBH_SG[1][0])
+capturedata_1e4_sBH_SG[1].append(capturedata_1e4_30_sBH_SG[3][len(capturedata_1e4_30_sBH_SG[3])-1])
 
 capturedata_1e5_sBH_SG=[[],[]]
 
@@ -1109,8 +1117,8 @@ capturedata_i_ostar_TQM[1].append(capturedata_1e4_60_ostar_TQM[3][len(capturedat
 #gstar, TQM
 #capturedata_1e2_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e2_45_gstar_TQM.txt")
 capturedata_1e3_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e3_45_gstar_TQM.txt")
-#capturedata_1e4_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e4_45_gstar_TQM.txt")
-#capturedata_1e5_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e5_45_gstar_TQM.txt")
+capturedata_1e4_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e4_45_gstar_TQM.txt")
+capturedata_1e5_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e5_45_gstar_TQM.txt")
 #capturedata_1e6_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e6_45_gstar_TQM.txt")
 #capturedata_1e7_45_gstar_TQM=loadtxt("capturedata/capturedataTQM/gstar/capturedata_1e7_45_gstar_TQM.txt")
 
@@ -1132,13 +1140,13 @@ capturedata_a_gstar_TQM[0].append(capturedata_1e3_45_gstar_TQM[0][0]/Rg)
 capturedata_a_gstar_TQM[1].append(capturedata_1e3_45_gstar_TQM[0][len(capturedata_1e3_45_gstar_TQM[0])-1]/Rg)
 capturedata_a_gstar_TQM[2].append(capturedata_1e3_45_gstar_TQM[3][len(capturedata_1e3_45_gstar_TQM[3])-1])
 
-#capturedata_a_gstar_TQM[0].append(capturedata_1e4_45_gstar_TQM[0][0]/Rg)
-#capturedata_a_gstar_TQM[1].append(capturedata_1e4_45_gstar_TQM[0][len(capturedata_1e4_45_gstar_TQM[0])-1]/Rg)
-#capturedata_a_gstar_TQM[2].append(capturedata_1e4_45_gstar_TQM[3][len(capturedata_1e4_45_gstar_TQM[3])-1])
+capturedata_a_gstar_TQM[0].append(capturedata_1e4_45_gstar_TQM[0][0]/Rg)
+capturedata_a_gstar_TQM[1].append(capturedata_1e4_45_gstar_TQM[0][len(capturedata_1e4_45_gstar_TQM[0])-1]/Rg)
+capturedata_a_gstar_TQM[2].append(capturedata_1e4_45_gstar_TQM[3][len(capturedata_1e4_45_gstar_TQM[3])-1])
 
-#capturedata_a_gstar_TQM[0].append(capturedata_1e5_45_gstar_TQM[0][0]/Rg)
-#capturedata_a_gstar_TQM[1].append(capturedata_1e5_45_gstar_TQM[0][len(capturedata_1e5_45_gstar_TQM[0])-1]/Rg)
-#capturedata_a_gstar_TQM[2].append(capturedata_1e5_45_gstar_TQM[3][len(capturedata_1e5_45_gstar_TQM[3])-1])
+capturedata_a_gstar_TQM[0].append(capturedata_1e5_45_gstar_TQM[0][0]/Rg)
+capturedata_a_gstar_TQM[1].append(capturedata_1e5_45_gstar_TQM[0][len(capturedata_1e5_45_gstar_TQM[0])-1]/Rg)
+capturedata_a_gstar_TQM[2].append(capturedata_1e5_45_gstar_TQM[3][len(capturedata_1e5_45_gstar_TQM[3])-1])
 
 #capturedata_a_gstar_TQM[0].append(capturedata_1e6_45_gstar_TQM[0][0]/Rg)
 #capturedata_a_gstar_TQM[1].append(capturedata_1e6_45_gstar_TQM[0][len(capturedata_1e6_45_gstar_TQM[0])-1]/Rg)
@@ -1161,8 +1169,8 @@ capturedata_i_gstar_TQM=[[],[]]
 capturedata_i_gstar_TQM[0].append(capturedata_1e4_30_gstar_TQM[1][0])
 capturedata_i_gstar_TQM[1].append(capturedata_1e4_30_gstar_TQM[3][len(capturedata_1e4_30_gstar_TQM[3])-1])
 
-#capturedata_i_gstar_TQM[0].append(capturedata_1e4_45_gstar_TQM[1][0])
-#capturedata_i_gstar_TQM[1].append(capturedata_1e4_45_gstar_TQM[3][len(capturedata_1e4_45_gstar_TQM[3])-1])
+capturedata_i_gstar_TQM[0].append(capturedata_1e4_45_gstar_TQM[1][0])
+capturedata_i_gstar_TQM[1].append(capturedata_1e4_45_gstar_TQM[3][len(capturedata_1e4_45_gstar_TQM[3])-1])
 
 capturedata_i_gstar_TQM[0].append(capturedata_1e4_60_gstar_TQM[1][0])
 capturedata_i_gstar_TQM[1].append(capturedata_1e4_60_gstar_TQM[3][len(capturedata_1e4_60_gstar_TQM[3])-1])
