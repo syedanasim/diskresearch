@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 from matplotlib.legend_handler import HandlerLine2D, HandlerTuple
 from scipy.interpolate import interp1d
 import scipy.interpolate as interpol
+import sys
+import os
 #%matplotlib inline
 
 #########################################################
@@ -324,22 +326,22 @@ def vkz(i,am):#m/s
     return kcomp
 # relative velocity component-wise
 def vrtheta(i,am):#m/s
+
     while (i < 0):
-        i = i + (2*pi)
-        if i < pi/2:
-            thetacomp=vel(am)-vktheta(i,am)
-        if i == pi/2:
-            thetacomp=vel(am)-vktheta(i,am)
-        if i > pi/2:
-            thetacomp=vktheta(i,am)-vel(am)
+        i = i + 2*pi
     while (i > 2*pi):
-        i = i - (2*pi)
-        if i < pi/2:
-            thetacomp=vel(am)-vktheta(i,am)
-        if i == pi/2:
-            thetacomp=vel(am)-vktheta(i,am)
-        if i > pi/2:
-            thetacomp=vktheta(i,am)-vel(am)
+        i = i - 2*pi
+
+    if i<=pi/2:
+        thetacomp=vel(am)-vktheta(i,am)
+    elif i>pi/2:
+        thetacomp=vktheta(i,am)-vel(am)
+    else:
+        print("The world is flat and we never got here")
+        sys.exit()
+
+    return thetacomp
+
     return thetacomp
 def vrz(i,am):#m/s
     rcomp=vkz(i,am)
@@ -652,8 +654,20 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         data[1].append(new_i*degrees)
         data[2].append(n)
         data[3].append(t_sum/year)
-        np.savetxt('capturedata/capturedata'+disk+'/capturedata_'+name+'.txt', data, delimiter=' ')
-        np.savetxt('capturedata/processingtime/processingtime_'+name+'.txt', runtime)
+
+#
+# the os package allows one to use unix commands in python. These lines
+# are testing if the directory exists, and if it does not, it creates it
+#
+
+        if not os.path.exists('capturedata/capturedata'+disk):
+            os.makedirs('capturedata/capturedata'+disk)
+        np.savetxt('./capturedata_'+name+'.txt', data, delimiter=' ')
+
+        if not os.path.exists('capturedata/processingtime'):
+            os.makedirs('capturedata/processingtime')
+        np.savetxt('./processingtime_'+name+'.txt', runtime)
+
         #print(data)
         return years
 #########################################################
