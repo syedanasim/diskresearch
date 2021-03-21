@@ -1,6 +1,6 @@
 #from datetime import datetime
 import time
-from numpy import pi,cos,sin,arctan,arcsin
+from numpy import pi,cos,sin,arctan2,arcsin
 import numpy as np
 from numpy import loadtxt
 import math
@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.legend_handler import HandlerLine2D, HandlerTuple
 from scipy.interpolate import interp1d
 import scipy.interpolate as interpol
+import sys
 #%matplotlib inline
 
 #########################################################
@@ -274,7 +275,7 @@ def density_TQM(am): #creating a density function density with respect to radius
 '''calculating arc length, or distance traveled in disk'''
 def arc(i,am,hint): #creating function for arc length as function of i & radius
     s=2*am*arcsin(hint(am)/(2*am*sin(i)))
-    return s #meters
+    return abs(s) #meters
 
 '''calculating time traveled in disk'''
 def Tdisk(i,am,hint): #creating function for time in disk Tdisk as function of i & a !!! CHECK THIS; i recall it being off by (an extra) factor of pi
@@ -319,6 +320,12 @@ def vkz(i,am):#m/s
     return kcomp
 # relative velocity component-wise
 def vrtheta(i,am):#m/s
+
+    while (i < 0):
+        i = i + 2*pi
+    while (i > 2*pi):
+        i = i - 2*pi
+
     if i<=pi/2:
         thetacomp=vel(am)-vktheta(i,am)
     if i>=pi/2:
@@ -365,7 +372,7 @@ def Ftheta_STO(i,am,rstar,density):#N (kgm/s^2)
     force=(Astar(rstar)*Cd/2)*density(am)*(vrtheta(i,am)**2)
     return force
 def Fz_STO(i,am,rstar,density):#N (kgm/s^2)
-    force=(Astar(rstar)*Cd/2)*density(am)*(vrz(i,am)**2)
+    force=np.sign(i)*(Astar(rstar)*Cd/2)*density(am)*(vrz(i,am)**2)
     return force
 def F_STO(i,am,rstar,density):#N (kgm/s^2)
     force=((Ftheta_STO(i,am,rstar,density)**2)+(Fz_STO(i,am,rstar,density)**2))**0.5
@@ -376,7 +383,7 @@ def Ftheta_BHL(i,am,rstar,density):#N (kgm/s^2)
     force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrtheta(i,am)**-2)
     return force
 def Fz_BHL(i,am,rstar,density):#N (kgm/s^2)
-    force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrz(i,am)**-2)
+    force=np.sign(i)*4*pi*(G**2)*(m_sBH**2)*density(am)*(vrz(i,am)**-2)
     return force
 def F_BHL(i,am,rstar,density):#N (kgm/s^2)
     force=((Ftheta_BHL(i,am,rstar,density)**2)+(Fz_BHL(i,am,rstar,density)**2))**0.5
@@ -515,8 +522,7 @@ def vkz_new_STO(i_in,am_in,rstar,mstar,density,hint):
     new=vkz(i_in,am_in)-dvz_STO(i_in,am_in,rstar,mstar,density,hint) #initial kep vel - del kep vel
     return new
 def i_new_STO(i_in,am_in,mstar,rstar,density,hint):
-    new=arctan(vkz_new_STO(i_in,am_in,rstar,mstar,density,hint)/vktheta_new_STO(i_in,am_in,rstar,mstar,density,hint))
-    #print(i_in)
+    new=arctan2(vkz_new_STO(i_in,am_in,rstar,mstar,density,hint),vktheta_new_STO(i_in,am_in,rstar,mstar,density,hint))
     return new
 def vk_new_STO(i_in,am_in,rstar,mstar,density,hint):
     new=(((vktheta_new_STO(i_in,am_in,rstar,mstar,density,hint))**2)+((vkz_new_STO(i_in,am_in,rstar,mstar,density,hint))**2))**0.5
@@ -588,7 +594,7 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         t_sum=t_sum+dt
         if mstar==m_sBH:
             new_i=i_new_BHL(initial_i,initial_a,mstar,rstar,density,hint)
-            new_a=a_new_BHL(initial_i,initial_a,mstar,rstar,density,hint)
+            new_a=a_new_BHL(initial_i,initial_a,mstar,rstar,density,hint)            
         else:
             new_i=i_new_STO(initial_i,initial_a,mstar,rstar,density,hint)
             new_a=a_new_STO(initial_i,initial_a,mstar,rstar,density,hint)
@@ -597,9 +603,9 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         initial_a=new_a
         if new_a<=amin: #6*Rg:
             condition1=False
-        if new_i<=min_i and new_i>=-min_i:
+        if (np.abs(new_i)<=np.abs(min_i)):
             condition2=False
-        if new_i<=i/e:
+        if (np.abs(new_i)<=np.abs(i)/e):
             condition3=False
             #print("n =",n,"t_sum =", t_sum/year,"years"," condition3 =",condition3)
         if n%intermediate==0:
@@ -629,8 +635,8 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         data[1].append(new_i*degrees)
         data[2].append(n)
         data[3].append(t_sum/year)
-        np.savetxt('capturedata/capturedata'+disk+'/capturedata_'+name+'.txt', data, delimiter=' ')
-        np.savetxt('capturedata/processingtime/processingtime_'+name+'.txt', runtime)
+        np.savetxt('./capturedata_'+name+'.txt', data, delimiter=' ')
+        np.savetxt('./processingtime_'+name+'.txt', runtime)
         #print(data)
         return years
 #########################################################
