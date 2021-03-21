@@ -1,6 +1,6 @@
 #from datetime import datetime
 import time
-from numpy import pi,cos,sin,arctan,arcsin
+from numpy import pi,cos,sin,arctan,arcsin,arctan2
 import numpy as np
 from numpy import loadtxt
 import math
@@ -274,7 +274,7 @@ def density_TQM(am): #creating a density function density with respect to radius
 '''calculating arc length, or distance traveled in disk'''
 def arc(i,am,hint): #creating function for arc length as function of i & radius
     s=2*am*arcsin(hint(am)/(2*am*sin(i)))
-    return s #meters
+    return abs(s) #meters
 
 '''calculating time traveled in disk'''
 def Tdisk(i,am,hint): #creating function for time in disk Tdisk as function of i & a !!! CHECK THIS; i recall it being off by (an extra) factor of pi
@@ -299,6 +299,11 @@ def ivals(am,hint):
     prograde=np.linspace(imin(am,hint),pi/2,1000)
     return prograde
 
+def ivals_alli(am,hint):
+    #vals=np.linspace(imin(am,hint)+0.1,imax(am,hint),20)
+    alli=np.linspace(imin(am,hint),pi,1000)
+    return alli
+
 #mutual a values: #within bounds of both SG & TQM #use only when necessary
 arg=surfacedensityarg_SG[4:]
 am=surfacedensityam_SG[4:]
@@ -319,14 +324,29 @@ def vkz(i,am):#m/s
     return kcomp
 # relative velocity component-wise
 def vrtheta(i,am):#m/s
-    if i<=pi/2:
-        thetacomp=vel(am)-vktheta(i,am)
-    if i>=pi/2:
-        thetacomp=vktheta(i,am)-vel(am)
+    while (i < 0):
+        i = i + (2*pi)
+        if i < pi/2:
+            thetacomp=vel(am)-vktheta(i,am)
+        if i == pi/2:
+            thetacomp=vel(am)-vktheta(i,am)
+        if i > pi/2:
+            thetacomp=vktheta(i,am)-vel(am)
+    while (i > 2*pi):
+        i = i - (2*pi)
+        if i < pi/2:
+            thetacomp=vel(am)-vktheta(i,am)
+        if i == pi/2:
+            thetacomp=vel(am)-vktheta(i,am)
+        if i > pi/2:
+            thetacomp=vktheta(i,am)-vel(am)
     return thetacomp
 def vrz(i,am):#m/s
     rcomp=vkz(i,am)
     return rcomp
+def vrel(i,am):#m/s
+    rtot= ((vrtheta(i,am)**2)+(vkz(i,am)**2))**0.5
+    return rtot
 
 def circ(am): #creating function for circumference as a fuction of radius
     c=2*pi*am
@@ -342,6 +362,14 @@ def rBH(i,am): #r bondi
 #r_sBH=rBH(pi/4,(10**4)*Rg)
 #density_sBH=densitystar(m_sBH,r_sBH)
 
+def omega(am):
+    orbfreq = (G*M/(am**3))**(0.5)
+    return orbfreq
+
+def csound(am,hint):
+    soundspeed = hint(am)*omega(am)
+    return soundspeed
+
 '''Here things depend on the position of the object, its other properties(ie mass, rad, etc.), as well as the model'''
 
 # Energy of orbit Eorb
@@ -354,7 +382,8 @@ def Ftheta_STO(i,am,rstar,density):#N (kgm/s^2)
     force=(Astar(rstar)*Cd/2)*density(am)*(vrtheta(i,am)**2)
     return force
 def Fz_STO(i,am,rstar,density):#N (kgm/s^2)
-    force=(Astar(rstar)*Cd/2)*density(am)*(vrz(i,am)**2)
+    #force=(Astar(rstar)*Cd/2)*density(am)*(vrz(i,am)**2)
+    force=np.sign(i)*(Astar(rstar)*Cd/2)*density(am)*(vrz(i,am)**2)
     return force
 def F_STO(i,am,rstar,density):#N (kgm/s^2)
     force=((Ftheta_STO(i,am,rstar,density)**2)+(Fz_STO(i,am,rstar,density)**2))**0.5
@@ -365,10 +394,22 @@ def Ftheta_BHL(i,am,rstar,density):#N (kgm/s^2)
     force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrtheta(i,am)**-2)
     return force
 def Fz_BHL(i,am,rstar,density):#N (kgm/s^2)
-    force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrz(i,am)**-2)
+    #force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrz(i,am)**-2)
+    force=np.sign(i)*4*pi*(G**2)*(m_sBH**2)*density(am)*(vrz(i,am)**-2)
     return force
 def F_BHL(i,am,rstar,density):#N (kgm/s^2)
     force=((Ftheta_BHL(i,am,rstar,density)**2)+(Fz_BHL(i,am,rstar,density)**2))**0.5
+    return force
+
+# Ostriker's Dynamical Drag Force component-wise
+def Ftheta_DYN(i,am,rstar,density,hint):#N (kgm/s^2)
+    force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrtheta(i,am)**-2)*np.log(arc(i,am,hint)/rBH(i,am))
+    return force
+def Fz_DYN(i,am,rstar,density,hint):#N (kgm/s^2)
+    force=4*pi*(G**2)*(m_sBH**2)*density(am)*(vrz(i,am)**-2)*np.log(arc(i,am,hint)/rBH(i,am))
+    return force
+def F_DYN(i,am,rstar,density,hint):#N (kgm/s^2)
+    force=((Ftheta_DYN(i,am,rstar,density,hint)**2)+(Fz_DYN(i,am,rstar,density,hint)**2))**0.5
     return force
 
 #use mass of orbiters to set parameter!!!
@@ -401,6 +442,10 @@ def n_BHL(i,am,hint,density): #num orbits assuming constant radius
     n=((vel(am)**4)*(sin(i)**3))/(8*(pi**2)*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(2*am*sin(i))))
     return n
 
+def n_DYN(i,am,hint,density): #num orbits assuming constant radius
+    n=((vel(am)**4)*(sin(i)**3))/(8*pi*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(2*am*sin(i)))*np.log(arc(i,am,hint)/rBH(i,am)))
+    return n
+
 def Tcap_estim_STO(i,am,rstar,densitystar,hint,density): #Tcap assuming constant radius
     t=n_STO(i,am,rstar,densitystar,hint,density)*Torb(am)
     years=t/year
@@ -408,6 +453,11 @@ def Tcap_estim_STO(i,am,rstar,densitystar,hint,density): #Tcap assuming constant
 
 def Tcap_estim_BHL(i,am,hint,density): #Tcap assuming constant radius
     t=n_BHL(i,am,hint,density)*Torb(am)
+    years=t/year
+    return years
+
+def Tcap_estim_DYN(i,am,hint,density): #Tcap assuming constant radius
+    t=n_DYN(i,am,hint,density)*Torb(am)
     years=t/year
     return years
 
@@ -431,6 +481,16 @@ def Wz_BHL(i,am,rstar,density,hint):
     return work
 def Worb_BHL(i,am,rstar,density,hint):
     work=((Wtheta_BHL(i,am,rstar,density,hint)**2)+(Wz_BHL(i,am,rstar,density,hint)**2))**0.5
+    return work
+
+def Wtheta_DYN(i,am,rstar,density,hint):
+    work=Ftheta_DYN(i,am,rstar,density,hint)*(arc(i,am,hint)*cos(i))
+    return work
+def Wz_DYN(i,am,rstar,density,hint):
+    work=Fz_DYN(i,am,rstar,density,hint)*(arc(i,am,hint)*sin(i))
+    return work
+def Worb_DYN(i,am,rstar,density,hint):
+    work=((Wtheta_DYN(i,am,rstar,density,hint)**2)+(Wz_DYN(i,am,rstar,density,hint)**2))**0.5
     return work
 
 '''new Eorb'''
@@ -474,7 +534,8 @@ def vkz_new_STO(i_in,am_in,rstar,mstar,density,hint):
     new=vkz(i_in,am_in)-dvz_STO(i_in,am_in,rstar,mstar,density,hint) #initial kep vel - del kep vel
     return new
 def i_new_STO(i_in,am_in,mstar,rstar,density,hint):
-    new=arctan(vkz_new_STO(i_in,am_in,rstar,mstar,density,hint)/vktheta_new_STO(i_in,am_in,rstar,mstar,density,hint))
+    #new=arctan(vkz_new_STO(i_in,am_in,rstar,mstar,density,hint)/vktheta_new_STO(i_in,am_in,rstar,mstar,density,hint))
+    new=arctan2(vkz_new_STO(i_in,am_in,rstar,mstar,density,hint),vktheta_new_STO(i_in,am_in,rstar,mstar,density,hint))
     #print(i_in)
     return new
 def vk_new_STO(i_in,am_in,rstar,mstar,density,hint):
@@ -488,7 +549,8 @@ def vkz_new_BHL(i_in,am_in,rstar,mstar,density,hint):
     new=vkz(i_in,am_in)-dvz_BHL(i_in,am_in,rstar,mstar,density,hint) #initial kep vel - del kep vel
     return new
 def i_new_BHL(i_in,am_in,mstar,rstar,density,hint):
-    new=arctan(vkz_new_BHL(i_in,am_in,rstar,mstar,density,hint)/vktheta_new_BHL(i_in,am_in,rstar,mstar,density,hint))
+    #new=arctan(vkz_new_BHL(i_in,am_in,rstar,mstar,density,hint)/vktheta_new_BHL(i_in,am_in,rstar,mstar,density,hint))
+    new=arctan2(vkz_new_BHL(i_in,am_in,rstar,mstar,density,hint),vktheta_new_BHL(i_in,am_in,rstar,mstar,density,hint))
     #print(i_in)
     return new
 def vk_new_BHL(i_in,am_in,rstar,mstar,density,hint):
@@ -556,9 +618,11 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         initial_a=new_a
         if new_a<=amin: #6*Rg:
             condition1=False
-        if new_i<=min_i:
+        #if new_i<=min_i:
+        if np.abs(new_i)<=np.abs(min_i):
             condition2=False
-        if new_i<=i/e:
+        #if new_i<=i/e:
+        if np.abs(new_i)<=np.abs(i)/e:
             condition3=False
             #print("n =",n,"t_sum =", t_sum/year,"years"," condition3 =",condition3)
         if n%intermediate==0:

@@ -1,35 +1,37 @@
 i_0=pi/4
 irange=[pi/36,pi/12,pi/6,pi/4,pi/3,4*pi/9]
+irangedeg=[5*degrees,15*degrees,30*degrees,45*degrees,60*degrees,80*degrees,
+           90*degrees,100*degrees,120*degrees,135*degrees,150*degrees,165*degrees,175*degrees]
 ideg=[pi/36*degrees,pi/12*degrees,pi/6*degrees,pi/4*degrees,pi/3*degrees,4*pi/9*degrees]
 am_0=1e4*Rg
 amrange=[1e2*Rg,1e3*Rg,1e4*Rg,1e5*Rg,1e6*Rg,1e7*Rg]
 amrange_SG=surfacedensityam_SG
 amrange_TQM=surfacedensityam_TQM
 
-irange2_SG=ivals(amrange[0],hint_SG)
-irange3_SG=ivals(amrange[1],hint_SG)
-irange4_SG=ivals(amrange[2],hint_SG)
-irange5_SG=ivals(amrange[3],hint_SG)
-irange6_SG=ivals(amrange[4],hint_SG)
-irange7_SG=ivals(amrange[5],hint_SG)
-ideg2_SG=ivals(amrange[0],hint_SG)*(180/pi)
-ideg3_SG=ivals(amrange[1],hint_SG)*(180/pi)
-ideg4_SG=ivals(amrange[2],hint_SG)*(180/pi)
-ideg5_SG=ivals(amrange[3],hint_SG)*(180/pi)
-ideg6_SG=ivals(amrange[4],hint_SG)*(180/pi)
-ideg7_SG=ivals(amrange[5],hint_SG)*(180/pi)
-irange2_TQM=ivals(amrange[0],hint_TQM)
-irange3_TQM=ivals(amrange[1],hint_TQM)
-irange4_TQM=ivals(amrange[2],hint_TQM)
-irange5_TQM=ivals(amrange[3],hint_TQM)
-irange6_TQM=ivals(amrange[4],hint_TQM)
-irange7_TQM=ivals(amrange[5],hint_TQM)
-ideg2_TQM=ivals(amrange[0],hint_TQM)*(180/pi)
-ideg3_TQM=ivals(amrange[1],hint_TQM)*(180/pi)
-ideg4_TQM=ivals(amrange[2],hint_TQM)*(180/pi)
-ideg5_TQM=ivals(amrange[3],hint_TQM)*(180/pi)
-ideg6_TQM=ivals(amrange[4],hint_TQM)*(180/pi)
-ideg7_TQM=ivals(amrange[5],hint_TQM)*(180/pi)
+irange2_SG=ivals_alli(amrange[0],hint_SG)
+irange3_SG=ivals_alli(amrange[1],hint_SG)
+irange4_SG=ivals_alli(amrange[2],hint_SG)
+irange5_SG=ivals_alli(amrange[3],hint_SG)
+irange6_SG=ivals_alli(amrange[4],hint_SG)
+irange7_SG=ivals_alli(amrange[5],hint_SG)
+ideg2_SG=ivals_alli(amrange[0],hint_SG)*(180/pi)
+ideg3_SG=ivals_alli(amrange[1],hint_SG)*(180/pi)
+ideg4_SG=ivals_alli(amrange[2],hint_SG)*(180/pi)
+ideg5_SG=ivals_alli(amrange[3],hint_SG)*(180/pi)
+ideg6_SG=ivals_alli(amrange[4],hint_SG)*(180/pi)
+ideg7_SG=ivals_alli(amrange[5],hint_SG)*(180/pi)
+irange2_TQM=ivals_alli(amrange[0],hint_TQM)
+irange3_TQM=ivals_alli(amrange[1],hint_TQM)
+irange4_TQM=ivals_alli(amrange[2],hint_TQM)
+irange5_TQM=ivals_alli(amrange[3],hint_TQM)
+irange6_TQM=ivals_alli(amrange[4],hint_TQM)
+irange7_TQM=ivals_alli(amrange[5],hint_TQM)
+ideg2_TQM=ivals_alli(amrange[0],hint_TQM)*(180/pi)
+ideg3_TQM=ivals_alli(amrange[1],hint_TQM)*(180/pi)
+ideg4_TQM=ivals_alli(amrange[2],hint_TQM)*(180/pi)
+ideg5_TQM=ivals_alli(amrange[3],hint_TQM)*(180/pi)
+ideg6_TQM=ivals_alli(amrange[4],hint_TQM)*(180/pi)
+ideg7_TQM=ivals_alli(amrange[5],hint_TQM)*(180/pi)
 
 Tcaprgianta_SG=[]
 Tcapostara_SG=[]
@@ -123,6 +125,13 @@ for j in range(len(irange4_TQM)):
     Tcap6Rg_TQM.append(Tcap_estim_BHL(irange6_TQM[j],amrange[4],hint_TQM,density_TQM))
     Tcap7Rg_TQM.append(Tcap_estim_BHL(irange7_TQM[j],amrange[5],hint_TQM,density_TQM))
 
+Tcap645_DYNa=[]
+Tcap645_DYNi=[]
+for j in range(len(amrange_SG)):
+    Tcap645_DYNa.append(abs(Tcap_estim_DYN(irange[3],amrange_SG[j],hint_SG,density_SG)))
+for j in range(len(irange6_SG)):
+    Tcap645_DYNi.append(abs(Tcap_estim_DYN(irange2_SG[j],amrange[4],hint_SG,density_SG)))
+
 #template=loadtxt("capturedata/capturedataMODEL/OBJECT/CONDITIONS.txt")
 
 #Plot with CONDITIONS,  define CONDITIONS in "if" loop, depending on STO vs BHL
@@ -170,6 +179,7 @@ capturedata_5e5_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_5e5
 capturedata_1e6_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e6_30_sBH_SG.txt")
 capturedata_1e7_30_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e7_30_sBH_SG.txt")
 
+capturedata_1e4_45_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e4_45_sBH_SG.txt")
 capturedata_5e5_45_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_5e5_45_sBH_SG.txt")
 capturedata_1e6_45_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e6_45_sBH_SG.txt")
 capturedata_1e7_45_sBH_SG=loadtxt("capturedata/capturedataSG/sBH/capturedata_1e7_45_sBH_SG.txt")
@@ -258,6 +268,10 @@ capturedata_30_sBH_SG[2].append(capturedata_1e7_30_sBH_SG[3][len(capturedata_1e7
 
 capturedata_45_sBH_SG=[[],[],[]]
 
+capturedata_45_sBH_SG[0].append(capturedata_1e4_45_sBH_SG[0][0]/Rg)
+capturedata_45_sBH_SG[1].append(capturedata_1e4_45_sBH_SG[0][len(capturedata_1e4_45_sBH_SG[0])-1]/Rg)
+capturedata_45_sBH_SG[2].append(capturedata_1e4_45_sBH_SG[3][len(capturedata_1e4_45_sBH_SG[3])-1])
+
 capturedata_45_sBH_SG[0].append(capturedata_5e5_45_sBH_SG[0][0]/Rg)
 capturedata_45_sBH_SG[1].append(capturedata_5e5_45_sBH_SG[0][len(capturedata_5e5_45_sBH_SG[0])-1]/Rg)
 capturedata_45_sBH_SG[2].append(capturedata_5e5_45_sBH_SG[3][len(capturedata_5e5_45_sBH_SG[3])-1])
@@ -325,6 +339,9 @@ capturedata_1e4_sBH_SG[1].append(capturedata_1e4_15_sBH_SG[3][len(capturedata_1e
 
 capturedata_1e4_sBH_SG[0].append(capturedata_1e4_30_sBH_SG[1][0])
 capturedata_1e4_sBH_SG[1].append(capturedata_1e4_30_sBH_SG[3][len(capturedata_1e4_30_sBH_SG[3])-1])
+
+capturedata_1e4_sBH_SG[0].append(capturedata_1e4_45_sBH_SG[1][0])
+capturedata_1e4_sBH_SG[1].append(capturedata_1e4_45_sBH_SG[3][len(capturedata_1e4_45_sBH_SG[3])-1])
 
 capturedata_1e5_sBH_SG=[[],[]]
 
@@ -712,6 +729,15 @@ capturedata_1e4_30_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/captureda
 capturedata_1e4_60_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_60_rgiant_SG.txt")
 capturedata_1e4_80_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_80_rgiant_SG.txt")
 
+capturedata_1e4_175_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_175_rgiant_SG.txt")
+capturedata_1e4_165_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_165_rgiant_SG.txt")
+capturedata_1e4_150_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_150_rgiant_SG.txt")
+capturedata_1e4_135_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_135_rgiant_SG.txt")
+capturedata_1e4_120_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_120_rgiant_SG.txt")
+capturedata_1e4_100_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_100_rgiant_SG.txt")
+
+capturedata_1e4_90_rgiant_SG=loadtxt("capturedata/capturedataSG/rgiant/capturedata_1e4_90_rgiant_SG.txt")
+
 ####################################################
 
 capturedata_a_rgiant_SG=[[],[],[]]
@@ -765,6 +791,27 @@ capturedata_i_rgiant_SG[1].append(capturedata_1e4_60_rgiant_SG[3][len(capturedat
 
 capturedata_i_rgiant_SG[0].append(capturedata_1e4_80_rgiant_SG[1][0])
 capturedata_i_rgiant_SG[1].append(capturedata_1e4_80_rgiant_SG[3][len(capturedata_1e4_80_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_90_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_90_rgiant_SG[3][len(capturedata_1e4_90_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_100_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_100_rgiant_SG[3][len(capturedata_1e4_100_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_120_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_120_rgiant_SG[3][len(capturedata_1e4_120_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_135_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_135_rgiant_SG[3][len(capturedata_1e4_135_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_150_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_150_rgiant_SG[3][len(capturedata_1e4_150_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_165_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_165_rgiant_SG[3][len(capturedata_1e4_165_rgiant_SG[3])-1])
+
+capturedata_i_rgiant_SG[0].append(capturedata_1e4_175_rgiant_SG[1][0])
+capturedata_i_rgiant_SG[1].append(capturedata_1e4_175_rgiant_SG[3][len(capturedata_1e4_175_rgiant_SG[3])-1])
 
 ########################################################################################################
 
@@ -1182,16 +1229,16 @@ capturedata_i_gstar_TQM[1].append(capturedata_1e4_60_gstar_TQM[3][len(capturedat
 
 #mstar, TQM
 #capturedata_1e2_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e2_45_mstar_TQM.txt")
-#capturedata_1e3_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e3_45_mstar_TQM.txt")
-#capturedata_1e4_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_45_mstar_TQM.txt")
-#capturedata_1e5_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e5_45_mstar_TQM.txt")
+capturedata_1e3_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e3_45_mstar_TQM.txt")
+capturedata_1e4_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_45_mstar_TQM.txt")
+capturedata_1e5_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e5_45_mstar_TQM.txt")
 #capturedata_1e6_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e6_45_mstar_TQM.txt")
 #capturedata_1e7_45_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e7_45_mstar_TQM.txt")
 
 #capturedata_1e4_5_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_5_mstar_TQM.txt")
 #capturedata_1e4_15_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_15_mstar_TQM.txt")
 capturedata_1e4_30_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_30_mstar_TQM.txt")
-#capturedata_1e4_60_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_60_mstar_TQM.txt")
+capturedata_1e4_60_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_60_mstar_TQM.txt")
 #capturedata_1e4_80_mstar_TQM=loadtxt("capturedata/capturedataTQM/mstar/capturedata_1e4_80_mstar_TQM.txt")
 
 ####################################################
@@ -1202,17 +1249,17 @@ capturedata_a_mstar_TQM=[[],[],[]]
 #capturedata_a_mstar_TQM[1].append(capturedata_1e2_45_mstar_TQM[0][len(capturedata_1e2_45_mstar_TQM[0])-1]/Rg)
 #capturedata_a_mstar_TQM[2].append(capturedata_1e2_45_mstar_TQM[3][len(capturedata_1e2_45_mstar_TQM[3])-1])
 
-#capturedata_a_mstar_TQM[0].append(capturedata_1e3_45_mstar_TQM[0][0]/Rg)
-#capturedata_a_mstar_TQM[1].append(capturedata_1e3_45_mstar_TQM[0][len(capturedata_1e3_45_mstar_TQM[0])-1]/Rg)
-#capturedata_a_mstar_TQM[2].append(capturedata_1e3_45_mstar_TQM[3][len(capturedata_1e3_45_mstar_TQM[3])-1])
+capturedata_a_mstar_TQM[0].append(capturedata_1e3_45_mstar_TQM[0][0]/Rg)
+capturedata_a_mstar_TQM[1].append(capturedata_1e3_45_mstar_TQM[0][len(capturedata_1e3_45_mstar_TQM[0])-1]/Rg)
+capturedata_a_mstar_TQM[2].append(capturedata_1e3_45_mstar_TQM[3][len(capturedata_1e3_45_mstar_TQM[3])-1])
 
-#capturedata_a_mstar_TQM[0].append(capturedata_1e4_45_mstar_TQM[0][0]/Rg)
-#capturedata_a_mstar_TQM[1].append(capturedata_1e4_45_mstar_TQM[0][len(capturedata_1e4_45_mstar_TQM[0])-1]/Rg)
-#capturedata_a_mstar_TQM[2].append(capturedata_1e4_45_mstar_TQM[3][len(capturedata_1e4_45_mstar_TQM[3])-1])
+capturedata_a_mstar_TQM[0].append(capturedata_1e4_45_mstar_TQM[0][0]/Rg)
+capturedata_a_mstar_TQM[1].append(capturedata_1e4_45_mstar_TQM[0][len(capturedata_1e4_45_mstar_TQM[0])-1]/Rg)
+capturedata_a_mstar_TQM[2].append(capturedata_1e4_45_mstar_TQM[3][len(capturedata_1e4_45_mstar_TQM[3])-1])
 
-#capturedata_a_mstar_TQM[0].append(capturedata_1e5_45_mstar_TQM[0][0]/Rg)
-#capturedata_a_mstar_TQM[1].append(capturedata_1e5_45_mstar_TQM[0][len(capturedata_1e5_45_mstar_TQM[0])-1]/Rg)
-#capturedata_a_mstar_TQM[2].append(capturedata_1e5_45_mstar_TQM[3][len(capturedata_1e5_45_mstar_TQM[3])-1])
+capturedata_a_mstar_TQM[0].append(capturedata_1e5_45_mstar_TQM[0][0]/Rg)
+capturedata_a_mstar_TQM[1].append(capturedata_1e5_45_mstar_TQM[0][len(capturedata_1e5_45_mstar_TQM[0])-1]/Rg)
+capturedata_a_mstar_TQM[2].append(capturedata_1e5_45_mstar_TQM[3][len(capturedata_1e5_45_mstar_TQM[3])-1])
 
 #capturedata_a_mstar_TQM[0].append(capturedata_1e6_45_mstar_TQM[0][0]/Rg)
 #capturedata_a_mstar_TQM[1].append(capturedata_1e6_45_mstar_TQM[0][len(capturedata_1e6_45_mstar_TQM[0])-1]/Rg)
@@ -1235,11 +1282,11 @@ capturedata_i_mstar_TQM=[[],[]]
 capturedata_i_mstar_TQM[0].append(capturedata_1e4_30_mstar_TQM[1][0])
 capturedata_i_mstar_TQM[1].append(capturedata_1e4_30_mstar_TQM[3][len(capturedata_1e4_30_mstar_TQM[3])-1])
 
-#capturedata_i_mstar_TQM[0].append(capturedata_1e4_45_mstar_TQM[1][0])
-#capturedata_i_mstar_TQM[1].append(capturedata_1e4_45_mstar_TQM[3][len(capturedata_1e4_45_mstar_TQM[3])-1])
+capturedata_i_mstar_TQM[0].append(capturedata_1e4_45_mstar_TQM[1][0])
+capturedata_i_mstar_TQM[1].append(capturedata_1e4_45_mstar_TQM[3][len(capturedata_1e4_45_mstar_TQM[3])-1])
 
-#capturedata_i_mstar_TQM[0].append(capturedata_1e4_60_mstar_TQM[1][0])
-#capturedata_i_mstar_TQM[1].append(capturedata_1e4_60_mstar_TQM[3][len(capturedata_1e4_60_mstar_TQM[3])-1])
+capturedata_i_mstar_TQM[0].append(capturedata_1e4_60_mstar_TQM[1][0])
+capturedata_i_mstar_TQM[1].append(capturedata_1e4_60_mstar_TQM[3][len(capturedata_1e4_60_mstar_TQM[3])-1])
 
 #capturedata_i_mstar_TQM[0].append(capturedata_1e4_80_mstar_TQM[1][0])
 #capturedata_i_mstar_TQM[1].append(capturedata_1e4_80_mstar_TQM[3][len(capturedata_1e4_80_mstar_TQM[3])-1])
