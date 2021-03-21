@@ -11,6 +11,7 @@ from matplotlib.legend_handler import HandlerLine2D, HandlerTuple
 from scipy.interpolate import interp1d
 import scipy.interpolate as interpol
 import sys
+import os
 #%matplotlib inline
 
 #########################################################
@@ -635,8 +636,19 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         data[1].append(new_i*degrees)
         data[2].append(n)
         data[3].append(t_sum/year)
+#
+# the os package allows one to use unix commands in python. These line
+# are testing if the directory exists, and if it does not, it creates it
+#
+
+        if not os.path.exists('capturedata/capturedata'+disk):
+            os.makedirs('capturedata/capturedata'+disk)
         np.savetxt('./capturedata_'+name+'.txt', data, delimiter=' ')
+
+        if not os.path.exists('capturedata/processingtime'):
+            os.makedirs('capturedata/processingtime')
         np.savetxt('./processingtime_'+name+'.txt', runtime)
+
         #print(data)
         return years
 #########################################################
