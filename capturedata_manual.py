@@ -1043,6 +1043,15 @@ capturedata_1e4_30_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capture
 capturedata_1e4_60_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_60_rgiant_TQM.txt")
 capturedata_1e4_80_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_80_rgiant_TQM.txt")
 
+capturedata_1e4_175_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_175_rgiant_TQM.txt")
+capturedata_1e4_165_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_165_rgiant_TQM.txt")
+capturedata_1e4_150_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_150_rgiant_TQM.txt")
+capturedata_1e4_135_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_135_rgiant_TQM.txt")
+capturedata_1e4_120_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_120_rgiant_TQM.txt")
+capturedata_1e4_100_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_100_rgiant_TQM.txt")
+
+capturedata_1e4_90_rgiant_TQM=loadtxt("capturedata/capturedataTQM/rgiant/capturedata_1e4_90_rgiant_TQM.txt")
+
 ####################################################
 
 capturedata_a_rgiant_TQM=[[],[],[]]
@@ -1092,6 +1101,27 @@ capturedata_i_rgiant_TQM[1].append(capturedata_1e4_60_rgiant_TQM[3][len(captured
 
 capturedata_i_rgiant_TQM[0].append(capturedata_1e4_80_rgiant_TQM[1][0])
 capturedata_i_rgiant_TQM[1].append(capturedata_1e4_80_rgiant_TQM[3][len(capturedata_1e4_80_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_90_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_90_rgiant_TQM[3][len(capturedata_1e4_90_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_100_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_100_rgiant_TQM[3][len(capturedata_1e4_100_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_120_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_120_rgiant_TQM[3][len(capturedata_1e4_120_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_135_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_135_rgiant_TQM[3][len(capturedata_1e4_135_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_150_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_150_rgiant_TQM[3][len(capturedata_1e4_150_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_165_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_165_rgiant_TQM[3][len(capturedata_1e4_165_rgiant_TQM[3])-1])
+
+capturedata_i_rgiant_TQM[0].append(capturedata_1e4_175_rgiant_TQM[1][0])
+capturedata_i_rgiant_TQM[1].append(capturedata_1e4_175_rgiant_TQM[3][len(capturedata_1e4_175_rgiant_TQM[3])-1])
 
 ########################################################################################################
 
