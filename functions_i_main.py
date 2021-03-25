@@ -13,6 +13,7 @@ import scipy.interpolate as interpol
 import sys
 import os
 #%matplotlib inline
+from mpl_toolkits import mplot3d
 
 #########################################################
 '''Constant Parameters'''
@@ -275,7 +276,8 @@ def density_TQM(am): #creating a density function density with respect to radius
 
 '''calculating arc length, or distance traveled in disk'''
 def arc(i,am,hint): #creating function for arc length as function of i & radius
-    s=2*am*arcsin(hint(am)/(2*am*sin(i)))
+    #s=2*am*arcsin(hint(am)/(2*am*sin(i)))
+    s=2*am*arcsin(hint(am)/(am*sin(i))) #adjusting H as half of scale height
     return abs(s) #meters
 
 '''calculating time traveled in disk'''
@@ -291,10 +293,12 @@ def Tratio(i,am,hint): #creating function for time ratio
 
 '''setting limits on inclination, where object is considered within disk height'''
 def imin(am,hint): #radians
-    i_min=arcsin(hint(am)/(2*am))
+    #i_min=arcsin(hint(am)/(2*am))
+    i_min=arcsin(hint(am)/(am))
     return i_min
 def imax(am,hint): #radians
-    i_max=pi-arcsin(hint(am)/(2*am))
+    #i_max=pi-arcsin(hint(am)/(2*am))
+    i_max=pi-arcsin(hint(am)/(am))
     return i_max
 def ivals(am,hint):
     #vals=np.linspace(imin(am,hint)+0.1,imax(am,hint),20)
@@ -437,15 +441,18 @@ def F_DYN(i,am,rstar,density,hint):#N (kgm/s^2)
 
 def n_STO(i,am,rstar,densitystar,hint,density): #num orbits assuming constant radius
     #n=((3*pi/4)*(density(am)/densitystar)*(am/rstar)*sin(i)*arcsin(hint(am)/(2*am*sin(i))))**(-1)
-    n=(4*rstar*densitystar)/(3*pi*am*density(am)*sin(i)*arcsin(hint(am)/(2*am*sin(i))))
+    #n=(4*rstar*densitystar)/(3*pi*am*density(am)*sin(i)*arcsin(hint(am)/(2*am*sin(i))))
+    n=(4*rstar*densitystar)/(3*pi*am*density(am)*sin(i)*arcsin(hint(am)/(am*sin(i))))
     return n
 def n_BHL(i,am,hint,density): #num orbits assuming constant radius
     #n=(8*pi**2*(G**2)*m_sBH*density(am)*(am/(vel(am)**4*sin(i)**3))*arcsin(hint(am)/(2*am*sin(i))))**(-1)
-    n=((vel(am)**4)*(sin(i)**3))/(8*(pi**2)*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(2*am*sin(i))))
+    #n=((vel(am)**4)*(sin(i)**3))/(8*(pi**2)*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(2*am*sin(i))))
+    n=((vel(am)**4)*(sin(i)**3))/(8*(pi**2)*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(am*sin(i))))
     return n
 
 def n_DYN(i,am,hint,density): #num orbits assuming constant radius
-    n=((vel(am)**4)*(sin(i)**3))/(8*pi*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(2*am*sin(i)))*np.log(arc(i,am,hint)/rBH(i,am)))
+    #n=((vel(am)**4)*(sin(i)**3))/(8*pi*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(2*am*sin(i)))*np.log(arc(i,am,hint)/rBH(i,am)))
+    n=((vel(am)**4)*(sin(i)**3))/(8*pi*am*(G**2)*m_sBH*density(am)*arcsin(hint(am)/(am*sin(i)))*np.log(arc(i,am,hint)/rBH(i,am)))
     return n
 
 def Tcap_estim_STO(i,am,rstar,densitystar,hint,density): #Tcap assuming constant radius
@@ -654,20 +661,21 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
         data[1].append(new_i*degrees)
         data[2].append(n)
         data[3].append(t_sum/year)
+        np.savetxt('capturedata/capturedata'+disk+'/capturedata_'+name+'.txt', data, delimiter=' ')
+        np.savetxt('capturedata/processingtime/processingtime_'+name+'.txt', runtime)
 
 #
 # the os package allows one to use unix commands in python. These lines
 # are testing if the directory exists, and if it does not, it creates it
 #
-
-        if not os.path.exists('capturedata/capturedata'+disk):
-            os.makedirs('capturedata/capturedata'+disk)
-        np.savetxt('./capturedata_'+name+'.txt', data, delimiter=' ')
-
-        if not os.path.exists('capturedata/processingtime'):
-            os.makedirs('capturedata/processingtime')
-        np.savetxt('./processingtime_'+name+'.txt', runtime)
-
+#        if not os.path.exists('capturedata/capturedata'+disk):
+#            os.makedirs('capturedata/capturedata'+disk)
+#        np.savetxt('./capturedata_'+name+'.txt', data, delimiter=' ')
+#
+#        if not os.path.exists('capturedata/processingtime'):
+#            os.makedirs('capturedata/processingtime')
+#        np.savetxt('./processingtime_'+name+'.txt', runtime)
+#
         #print(data)
         return years
 #########################################################

@@ -81,72 +81,76 @@ def stitch_plot_stellar_i():
 def it_acolor_plot_proretro(): #this one
     fig=plt.figure(figsize=(12,6))
     vmin=1e1; vmax=1e4; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
-    norm=plt.Normalize(vmax=vmax, vmin=vmin)
+    #norm=plt.Normalize(vmax=vmax, vmin=vmin)
     plt.subplots_adjust(left=0.05, right=0.96, top=0.98, bottom=0.25, wspace=0.0)
     
     ax1=plt.subplot(121)
-    delta=ax1.scatter(capturedata_1e4_175_rgiant_SG[3],capturedata_1e4_175_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_175_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_165_rgiant_SG[3],capturedata_1e4_165_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_165_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_150_rgiant_SG[3],capturedata_1e4_150_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_150_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_135_rgiant_SG[3],capturedata_1e4_135_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_120_rgiant_SG[3],capturedata_1e4_120_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_120_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_100_rgiant_SG[3],capturedata_1e4_100_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_100_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_90_rgiant_SG[3],capturedata_1e4_90_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_90_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_80_rgiant_SG[3],capturedata_1e4_80_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_80_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_60_rgiant_SG[3],capturedata_1e4_60_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_60_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_45_rgiant_SG[3],capturedata_1e4_45_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_30_rgiant_SG[3],capturedata_1e4_30_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_30_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
-    ax1.scatter(capturedata_1e4_15_rgiant_SG[3],capturedata_1e4_15_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_15_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
     ax1.scatter(capturedata_1e4_5_rgiant_SG[3],capturedata_1e4_5_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_5_rgiant_SG[0]/Rg, cmap='viridis', norm=norm)
+        marker='.',label='r giant', c=capturedata_1e4_5_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_15_rgiant_SG[3],capturedata_1e4_15_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_15_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_30_rgiant_SG[3],capturedata_1e4_30_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_30_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_45_rgiant_SG[3],capturedata_1e4_45_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_60_rgiant_SG[3],capturedata_1e4_60_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_60_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_80_rgiant_SG[3],capturedata_1e4_80_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_80_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_90_rgiant_SG[3],capturedata_1e4_90_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_90_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_100_rgiant_SG[3],capturedata_1e4_100_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_100_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_120_rgiant_SG[3],capturedata_1e4_120_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_120_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_135_rgiant_SG[3],capturedata_1e4_135_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_150_rgiant_SG[3],capturedata_1e4_150_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_150_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_165_rgiant_SG[3],capturedata_1e4_165_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_165_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    delta=ax1.scatter(capturedata_1e4_175_rgiant_SG[3],capturedata_1e4_175_rgiant_SG[1],
+        marker='.',label='r giant', c=capturedata_1e4_175_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
     
-    matplotlib.pyplot.annotate('SG', (1e4,175))
+    matplotlib.pyplot.annotate('SG', (4.5e3,175))
+    #ax1.set_xlim([0,5.5e3])
     plt.xscale('log')
+    #ax1.set_xscale('symlog')
     ax1.set_xlabel('$t$ [$yr$]')
     ax1.set_ylabel('$i$ [$deg$]')
     
     ax2=plt.subplot(122)
-    delta=ax2.scatter(capturedata_1e4_175_rgiant_TQM[3],capturedata_1e4_175_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_175_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_165_rgiant_TQM[3],capturedata_1e4_165_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_165_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_150_rgiant_TQM[3],capturedata_1e4_150_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_150_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_135_rgiant_TQM[3],capturedata_1e4_135_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_120_rgiant_TQM[3],capturedata_1e4_120_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_120_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_100_rgiant_TQM[3],capturedata_1e4_100_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_100_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_90_rgiant_TQM[3],capturedata_1e4_90_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_90_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_80_rgiant_TQM[3],capturedata_1e4_80_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_80_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_60_rgiant_TQM[3],capturedata_1e4_60_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_60_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_45_rgiant_TQM[3],capturedata_1e4_45_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_30_rgiant_TQM[3],capturedata_1e4_30_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_30_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
-    ax2.scatter(capturedata_1e4_15_rgiant_TQM[3],capturedata_1e4_15_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_15_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
     ax2.scatter(capturedata_1e4_5_rgiant_TQM[3],capturedata_1e4_5_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_5_rgiant_TQM[0]/Rg, cmap='viridis', norm=norm)
+        marker='.',label='r giant', c=capturedata_1e4_5_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_15_rgiant_TQM[3],capturedata_1e4_15_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_15_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_30_rgiant_TQM[3],capturedata_1e4_30_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_30_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_45_rgiant_TQM[3],capturedata_1e4_45_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_60_rgiant_TQM[3],capturedata_1e4_60_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_60_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_80_rgiant_TQM[3],capturedata_1e4_80_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_80_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_90_rgiant_TQM[3],capturedata_1e4_90_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_90_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_100_rgiant_TQM[3],capturedata_1e4_100_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_100_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_120_rgiant_TQM[3],capturedata_1e4_120_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_120_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_135_rgiant_TQM[3],capturedata_1e4_135_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_150_rgiant_TQM[3],capturedata_1e4_150_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_150_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    ax2.scatter(capturedata_1e4_165_rgiant_TQM[3],capturedata_1e4_165_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_165_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)    
+    delta=ax2.scatter(capturedata_1e4_175_rgiant_TQM[3],capturedata_1e4_175_rgiant_TQM[1],
+        marker='.',label='r giant', c=capturedata_1e4_175_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
     
-    matplotlib.pyplot.annotate('TQM', (7e5,175))
+    matplotlib.pyplot.annotate('TQM', (3e5,175))
+    #ax2.set_xlim([0,4e5])
     plt.xscale('log') 
+    #ax2.set_xscale('symlog')
     ax2.set_xlabel('$t$ [$yr$]')
     #ax2.set_ylabel('$i$ [$deg$]')
     ax2.yaxis.tick_right()
@@ -165,42 +169,42 @@ def it_acolor_plot_proretro(): #this one
 def it_acolor_plot_45135(): #this one
     fig=plt.figure(figsize=(12,6))
     vmin=1e1; vmax=1e4; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
-    norm=plt.Normalize(vmax=vmax, vmin=vmin)
+    #norm=plt.Normalize(vmax=vmax, vmin=vmin)
     plt.subplots_adjust(left=0.06, right=0.96, top=0.98, bottom=0.25, wspace=0.0)
     
     ax1=plt.subplot(121)
     delta=ax1.scatter(capturedata_1e4_135_rgiant_SG[3],capturedata_1e4_135_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_SG[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_SG[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax1.scatter(capturedata_1e4_n135_rgiant_SG[3],capturedata_1e4_n135_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_n135_rgiant_SG[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_n135_rgiant_SG[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax1.scatter(capturedata_1e4_n45_rgiant_SG[3],capturedata_1e4_n45_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_n45_rgiant_SG[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_n45_rgiant_SG[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax1.scatter(capturedata_1e4_45_rgiant_SG[3],capturedata_1e4_45_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_SG[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_SG[0]/Rg, cmap='inferno_r',
         norm=norm)
     matplotlib.pyplot.annotate('SG', (1e4,175))
-    #plt.xscale('log')
+    plt.xscale('log')
     ax1.set_xlabel('$t$ [$yr$]')
     ax1.set_ylabel('$i$ [$deg$]')
     
     ax2=plt.subplot(122)
     delta=ax2.scatter(capturedata_1e4_135_rgiant_TQM[3],capturedata_1e4_135_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_TQM[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_TQM[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax2.scatter(capturedata_1e4_n135_rgiant_TQM[3],capturedata_1e4_n135_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_n135_rgiant_TQM[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_n135_rgiant_TQM[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax2.scatter(capturedata_1e4_n45_rgiant_TQM[3],capturedata_1e4_n45_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_n45_rgiant_TQM[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_n45_rgiant_TQM[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax2.scatter(capturedata_1e4_45_rgiant_TQM[3],capturedata_1e4_45_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_TQM[0]/Rg, cmap='viridis',
+        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_TQM[0]/Rg, cmap='inferno_r',
         norm=norm)
     matplotlib.pyplot.annotate('TQM', (7e5,175))
-    #plt.xscale('log') 
+    plt.xscale('log') 
     ax2.set_xlabel('$t$ [$yr$]')
     #ax2.set_ylabel('$i$ [$deg$]')
     ax2.yaxis.tick_right()
@@ -1247,26 +1251,25 @@ def hprofile_color_plot():
     fig=plt.figure(figsize=(10,8))
     vmin=1e-20; vmax=1e-8; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
     
-    #we divide each quadrant's y values by 2 so that the total H is consistent
     ax = plt.subplot(111)
-    ax.plot(harg_TQM,h_TQM/Rg/2,label='TQM',lw=2,c='r')
-    ax.plot(-harg_TQM,-h_TQM/Rg/2,lw=2,c='r')
-    ax.plot(-harg_TQM,h_TQM/Rg/2,lw=2,c='r')
-    ax.plot(harg_TQM,-h_TQM/Rg/2,lw=2,c='r')
-    ax.plot(harg_SG,h_SG/Rg/2,label='SG',lw=2,c='b')
-    ax.plot(-harg_SG,-h_SG/Rg/2,lw=2,c='b')
-    ax.plot(-harg_SG,h_SG/Rg/2,lw=2,c='b')
-    ax.plot(harg_SG,-h_SG/Rg/2,lw=2,c='b')
+    ax.plot(harg_TQM,h_TQM/Rg,label='TQM',lw=2,c='r')
+    ax.plot(-harg_TQM,-h_TQM/Rg,lw=2,c='r')
+    ax.plot(-harg_TQM,h_TQM/Rg,lw=2,c='r')
+    ax.plot(harg_TQM,-h_TQM/Rg,lw=2,c='r')
+    ax.plot(harg_SG,h_SG/Rg,label='SG',lw=2,c='b')
+    ax.plot(-harg_SG,-h_SG/Rg,lw=2,c='b')
+    ax.plot(-harg_SG,h_SG/Rg,lw=2,c='b')
+    ax.plot(harg_SG,-h_SG/Rg,lw=2,c='b')
     
-    #deltaTQM=ax.scatter(harg_TQM,h_TQM/Rg/2,marker='.',c=den_TQM, cmap='magma',norm=norm)
-    #ax.scatter(-harg_TQM,-h_TQM/Rg/2,marker='.',c=den_TQM, cmap='magma',norm=norm)
-    #ax.scatter(-harg_TQM,h_TQM/Rg/2,marker='.',c=den_TQM, cmap='magma',norm=norm)
-    #ax.scatter(harg_TQM,-h_TQM/Rg/2,marker='.',c=den_TQM, cmap='magma',norm=norm)
+    #deltaTQM=ax.scatter(harg_TQM,h_TQM/Rg,marker='.',c=den_TQM, cmap='magma',norm=norm)
+    #ax.scatter(-harg_TQM,-h_TQM/Rg,marker='.',c=den_TQM, cmap='magma',norm=norm)
+    #ax.scatter(-harg_TQM,h_TQM/Rg,marker='.',c=den_TQM, cmap='magma',norm=norm)
+    #ax.scatter(harg_TQM,-h_TQM/Rg,marker='.',c=den_TQM, cmap='magma',norm=norm)
     
-    #deltaSG=ax.scatter(harg_SG,h_SG/Rg/2,marker='.',c=den_SG, cmap='magma',norm=norm)
-    #ax.scatter(-harg_SG,-h_SG/Rg/2,marker='.',c=den_SG, cmap='magma',norm=norm)
-    #ax.scatter(-harg_SG,h_SG/Rg/2,marker='.',c=den_SG, cmap='magma',norm=norm)
-    #ax.scatter(harg_SG,-h_SG/Rg/2,marker='.',c=den_SG, cmap='magma',norm=norm)
+    #deltaSG=ax.scatter(harg_SG,h_SG/Rg,marker='.',c=den_SG, cmap='magma',norm=norm)
+    #ax.scatter(-harg_SG,-h_SG/Rg,marker='.',c=den_SG, cmap='magma',norm=norm)
+    #ax.scatter(-harg_SG,h_SG/Rg,marker='.',c=den_SG, cmap='magma',norm=norm)
+    #ax.scatter(harg_SG,-h_SG/Rg,marker='.',c=den_SG, cmap='magma',norm=norm)
     
     #cb=plt.colorbar(deltaSG)
     #cb.set_label('Δ ρ [$g/cm^{3}$]')
@@ -1329,10 +1332,10 @@ def it_acolor_plot(): #this one
     
     ax1=plt.subplot(121)
     ax1.scatter(capturedata_1e6_45_rgiant_SG[3],capturedata_1e6_45_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_SG[0]/Rg, cmap='ocean_r',
+        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_SG[0]/Rg, cmap='inferno_r',
         norm=norm)
     delta=ax1.scatter(capturedata_1e6_45_sBH_SG[3],capturedata_1e6_45_sBH_SG[1],
-        marker='.',label='sBH', c=capturedata_1e6_45_sBH_SG[0]/Rg, cmap='ocean_r', #plasma_r
+        marker='.',label='sBH', c=capturedata_1e6_45_sBH_SG[0]/Rg, cmap='inferno_r', #plasma_r
         norm=norm)
     matplotlib.pyplot.annotate('rgiant', (2e8,10))
     matplotlib.pyplot.annotate('sBH', (4e9,10))
@@ -1340,10 +1343,10 @@ def it_acolor_plot(): #this one
     
     ax2=plt.subplot(122)
     ax2.scatter(capturedata_1e6_45_rgiant_TQM[3],capturedata_1e6_45_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_TQM[0]/Rg, cmap='ocean_r',
+        marker='.',label='r giant', c=capturedata_1e6_45_rgiant_TQM[0]/Rg, cmap='inferno_r',
         norm=norm)
     ax2.scatter(capturedata_1e6_45_sBH_TQM[3],capturedata_1e6_45_sBH_TQM[1],
-        marker='.',label='sBH', c=capturedata_1e6_45_sBH_TQM[0]/Rg, cmap='ocean_r',
+        marker='.',label='sBH', c=capturedata_1e6_45_sBH_TQM[0]/Rg, cmap='inferno_r',
         norm=norm)
     matplotlib.pyplot.annotate('rgiant', (2e8,10))
     matplotlib.pyplot.annotate('sBH', (4e9,10))
