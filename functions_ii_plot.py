@@ -1,3 +1,124 @@
+def stitch_plot_stellar_a():
+    fig=plt.figure(figsize=(12,6))
+    plt.subplots_adjust(left=0.06, right=0.95, top=0.85, bottom=0.1, wspace=0, hspace=0.15)
+    
+    
+    uplimw=2.5
+    delaw=0.75
+    acapw=0.2
+        
+    a=[0,10**5]
+    b=[0,10**8]
+    c=[10**8,(10**5)]
+    d=[10**8,(10**8)]
+    widtha = c[0] - a[0]
+    heighta = d[1] - a[1]
+    e=[-10,10**5]
+    f=[-10,10**8]
+    g=[190,(10**5)]
+    h=[190,(10**8)]
+    widthi = g[0] - e[0]
+    heighti = h[1] - e[1]
+    lifetimea1=matplotlib.patches.Rectangle((0,10**5), widtha, heighta, angle=0.0, facecolor='lightgrey',alpha=0.5)
+    lifetimei2=matplotlib.patches.Rectangle((-10,10**5), widthi, heighti, angle=0.0, facecolor='lightgrey',alpha=0.5)
+    lifetimea3=matplotlib.patches.Rectangle((0,10**5), widtha, heighta, angle=0.0, facecolor='lightgrey',alpha=0.5)
+    lifetimei4=matplotlib.patches.Rectangle((-10,10**5), widthi, heighti, angle=0.0, facecolor='lightgrey',alpha=0.5)    
+    
+    ax1=plt.subplot(121)
+    ax1.plot(amrange_SG/Rg,Tcaprgianta_SG_135,'r:',lw=uplimw,label='Red Giant',c='crimson')
+    ax1.plot([capturedata_a_rgiant_SG_135[0],capturedata_a_rgiant_SG_135[1]],
+        [capturedata_a_rgiant_SG_135[2],capturedata_a_rgiant_SG_135[2]],'r:',lw=delaw,c='k')
+    ax1.plot(capturedata_a_rgiant_SG_135[0], capturedata_a_rgiant_SG_135[2],'*',#label='Red Giant',
+        markersize=12,markerfacecolor='crimson',markeredgewidth=0.1,markeredgecolor='k')
+    ax1.plot(capturedata_a_rgiant_SG_135[1], capturedata_a_rgiant_SG_135[2],'*',
+        markersize=7, markerfacecolor='k', markeredgewidth=acapw, markeredgecolor='crimson')
+    ax1.plot(amrange_SG/Rg,Tcapostara_SG_135,'r-.',lw=uplimw,label='O Star',c='royalblue')
+    ax1.plot([capturedata_a_ostar_SG_135[0],capturedata_a_ostar_SG_135[1]],
+        [capturedata_a_ostar_SG_135[2],capturedata_a_ostar_SG_135[2]],'r:',lw=delaw,c='k')
+    ax1.plot(capturedata_a_ostar_SG_135[0], capturedata_a_ostar_SG_135[2],'*',label='O Star',
+        markersize=12,markerfacecolor='royalblue',markeredgewidth=0.1,markeredgecolor='k')
+    ax1.plot(capturedata_a_ostar_SG_135[1], capturedata_a_ostar_SG_135[2],'*',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='royalblue')
+    ax1.plot(amrange_SG/Rg,Tcapgstara_SG_135,'r--',lw=uplimw,label='G Star',c='gold')
+    ax1.plot([capturedata_a_gstar_SG_135[0],capturedata_a_gstar_SG_135[1]],
+        [capturedata_a_gstar_SG_135[2],capturedata_a_gstar_SG_135[2]],'r:',lw=delaw,c='k')
+    ax1.plot(capturedata_a_gstar_SG_135[0], capturedata_a_gstar_SG_135[2],'*',label='G Star',
+        markersize=12,markerfacecolor='gold',markeredgewidth=0.1,markeredgecolor='k')
+    ax1.plot(capturedata_a_gstar_SG_135[1], capturedata_a_gstar_SG_135[2],'*',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='gold')
+    ax1.plot(amrange_SG/Rg,Tcapmstara_SG_135,'r-',lw=uplimw, label='M Dwarf',c='darkorange')
+    ax1.plot([capturedata_a_mstar_SG_135[0],capturedata_a_mstar_SG_135[1]],
+        [capturedata_a_mstar_SG_135[2],capturedata_a_mstar_SG_135[2]],'r:',lw=delaw, c='k')
+    ax1.plot(capturedata_a_mstar_SG_135[0],capturedata_a_mstar_SG_135[2],'*',label='M Dwarf',
+        markersize=12,markerfacecolor='darkorange',markeredgewidth=0.1,markeredgecolor='k')
+    ax1.plot(capturedata_a_mstar_SG_135[1][0],capturedata_a_mstar_SG_135[2][0],'r:',lw=delaw,label='Δ a',c='k')
+    ax1.plot(capturedata_a_mstar_SG_135[1],capturedata_a_mstar_SG_135[2],'*',label='$a_{cap}$',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='k')
+    ax1.plot(capturedata_a_mstar_SG_135[1],capturedata_a_mstar_SG_135[2],'*',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='darkorange')
+    
+    
+    matplotlib.pyplot.annotate('$i_{0} = 135^{\circ}$', (5e0,2e17))
+    matplotlib.pyplot.annotate('AGN lifetime', (1*10**6,1e7))
+    ax1.add_patch(lifetimea1)
+    #ax1.legend(fontsize=12, framealpha=1, edgecolor= 'k', handlelength=6,
+    #    ncol=5, columnspacing=3, loc='center left', bbox_to_anchor=(-0.015,1.1))
+    plt.xscale('log')
+    plt.yscale('log')
+    ax1.set_xlabel('$a$ [$R_g$]', fontsize=12)
+    ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+    ax1.set_xlim([3e0,2e7])
+    ax1.set_ylim([1e-2,2e18])
+    
+    ax3=plt.subplot(122)
+    ax3.plot(amrange_TQM/Rg,Tcaprgianta_TQM_135,'r:',lw=uplimw,label='Red Giant',c='crimson')
+    ax3.plot([capturedata_a_rgiant_TQM_135[0],capturedata_a_rgiant_TQM_135[1]],
+        [capturedata_a_rgiant_TQM_135[2],capturedata_a_rgiant_TQM_135[2]],'r:',lw=delaw,c='k')
+    ax3.plot(capturedata_a_rgiant_TQM_135[0], capturedata_a_rgiant_TQM_135[2],'*',#label='Red Giant',
+        markersize=12,markerfacecolor='crimson',markeredgewidth=0.1,markeredgecolor='k')
+    ax3.plot(capturedata_a_rgiant_TQM_135[1], capturedata_a_rgiant_TQM_135[2],'*',
+        markersize=7, markerfacecolor='k', markeredgewidth=acapw, markeredgecolor='crimson')
+    ax3.plot(amrange_TQM/Rg,Tcapostara_TQM_135,'r-.',lw=uplimw,label='O Star',c='royalblue')
+    ax3.plot([capturedata_a_ostar_TQM_135[0],capturedata_a_ostar_TQM_135[1]],
+        [capturedata_a_ostar_TQM_135[2],capturedata_a_ostar_TQM_135[2]],'r:',lw=delaw,c='k')
+    ax3.plot(capturedata_a_ostar_TQM_135[0], capturedata_a_ostar_TQM_135[2],'*',label='O Star',
+        markersize=12,markerfacecolor='royalblue',markeredgewidth=0.1,markeredgecolor='k')
+    ax3.plot(capturedata_a_ostar_TQM_135[1], capturedata_a_ostar_TQM_135[2],'*',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='royalblue')
+    ax3.plot(amrange_TQM/Rg,Tcapgstara_TQM_135,'r--',lw=uplimw,label='G Star',c='gold')
+    ax3.plot([capturedata_a_gstar_TQM_135[0],capturedata_a_gstar_TQM_135[1]],
+        [capturedata_a_gstar_TQM_135[2],capturedata_a_gstar_TQM_135[2]],'r:',lw=delaw,c='k')
+    ax3.plot(capturedata_a_gstar_TQM_135[0], capturedata_a_gstar_TQM_135[2],'*',label='G Star',
+        markersize=12,markerfacecolor='gold',markeredgewidth=0.1,markeredgecolor='k')
+    ax3.plot(capturedata_a_gstar_TQM_135[1], capturedata_a_gstar_TQM_135[2],'*',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='gold')
+    ax3.plot(amrange_TQM/Rg,Tcapmstara_TQM_135,'r-',lw=uplimw, label='M Dwarf',c='darkorange')
+    ax3.plot([capturedata_a_mstar_TQM_135[0],capturedata_a_mstar_TQM_135[1]],
+        [capturedata_a_mstar_TQM_135[2],capturedata_a_mstar_TQM_135[2]],'r:',lw=delaw, c='k')
+    ax3.plot(capturedata_a_mstar_TQM_135[0],capturedata_a_mstar_TQM_135[2],'*',label='M Dwarf',
+        markersize=12,markerfacecolor='darkorange',markeredgewidth=0.1,markeredgecolor='k')
+    ax3.plot(capturedata_a_mstar_TQM_135[1],capturedata_a_mstar_TQM_135[2],'r:',lw=delaw,label='Δ a',c='k')
+    ax3.plot(capturedata_a_mstar_TQM_135[1],capturedata_a_mstar_TQM_135[2],'*',label='$a_{cap}$',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='k')
+    ax3.plot(capturedata_a_mstar_TQM_135[1],capturedata_a_mstar_TQM_135[2],'*',
+        markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='darkorange')
+    
+    
+    #matplotlib.pyplot.annotate('$i_{0} = 135^{\circ}$', (6e1,5e17))
+    matplotlib.pyplot.annotate('AGN lifetime', (3*10**6,1e7))
+    ax3.add_patch(lifetimea3)
+    #ax3.legend(fontsize=9.5, framealpha=1, edgecolor= 'k', handlelength=2.7,
+    #    ncol=5, columnspacing=0.65, loc='center left', bbox_to_anchor=(-0.012,1.08))
+    plt.xscale('log')
+    plt.yscale('log')
+    ax3.set_xlabel('$a$ [$R_g$]', fontsize=12)
+    #ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
+    ax3.set_xlim([4e1,6e7])
+    ax3.set_ylim([1e-2,2e18])
+    ax3.yaxis.tick_right()
+    
+    plt.savefig('plots/capturetimeplots/stellar-Tcap_a.pdf')
+    plt.savefig('plots/paperplots/stellar-Tcap_a.pdf')
 def stitch_plot_stellar_i():
     #fig=plt.figure(figsize=(12,12))
     fig=plt.figure(figsize=(12,6))
@@ -78,39 +199,150 @@ def stitch_plot_stellar_i():
     plt.savefig('plots/capturetimeplots/stellar-Tcap_i.pdf')
     plt.savefig('plots/paperplots/stellar-Tcap_i.pdf')
 
-def it_acolor_plot_proretro(): #this one
-    fig=plt.figure(figsize=(12,6))
+def it_acolor_plot_proretro(star): #this one
+    #fig=plt.figure(figsize=(12,6))
+    fig=plt.figure(figsize=(8,6))
     vmin=1e1; vmax=1e4; norm=matplotlib.colors.LogNorm(vmax=vmax, vmin=vmin)
     #norm=plt.Normalize(vmax=vmax, vmin=vmin)
     plt.subplots_adjust(left=0.05, right=0.96, top=0.98, bottom=0.25, wspace=0.0)
     
-    ax1=plt.subplot(121)
-    ax1.scatter(capturedata_1e4_5_rgiant_SG[3],capturedata_1e4_5_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_5_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_15_rgiant_SG[3],capturedata_1e4_15_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_15_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_30_rgiant_SG[3],capturedata_1e4_30_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_30_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_45_rgiant_SG[3],capturedata_1e4_45_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_60_rgiant_SG[3],capturedata_1e4_60_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_60_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_80_rgiant_SG[3],capturedata_1e4_80_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_80_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_90_rgiant_SG[3],capturedata_1e4_90_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_90_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_100_rgiant_SG[3],capturedata_1e4_100_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_100_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_120_rgiant_SG[3],capturedata_1e4_120_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_120_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_135_rgiant_SG[3],capturedata_1e4_135_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_150_rgiant_SG[3],capturedata_1e4_150_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_150_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    ax1.scatter(capturedata_1e4_165_rgiant_SG[3],capturedata_1e4_165_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_165_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
-    delta=ax1.scatter(capturedata_1e4_175_rgiant_SG[3],capturedata_1e4_175_rgiant_SG[1],
-        marker='.',label='r giant', c=capturedata_1e4_175_rgiant_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    if (star in r_giant) == True:
+        capturedata_1e4_5_SG = capturedata_1e4_5_rgiant_SG
+        capturedata_1e4_15_SG = capturedata_1e4_15_rgiant_SG
+        capturedata_1e4_30_SG = capturedata_1e4_30_rgiant_SG
+        capturedata_1e4_45_SG = capturedata_1e4_45_rgiant_SG
+        capturedata_1e4_60_SG = capturedata_1e4_60_rgiant_SG
+        capturedata_1e4_80_SG = capturedata_1e4_80_rgiant_SG
+        capturedata_1e4_90_SG = capturedata_1e4_90_rgiant_SG
+        capturedata_1e4_100_SG = capturedata_1e4_100_rgiant_SG
+        capturedata_1e4_120_SG = capturedata_1e4_120_rgiant_SG
+        capturedata_1e4_135_SG = capturedata_1e4_135_rgiant_SG
+        capturedata_1e4_150_SG = capturedata_1e4_150_rgiant_SG
+        capturedata_1e4_165_SG = capturedata_1e4_165_rgiant_SG
+        capturedata_1e4_175_SG = capturedata_1e4_175_rgiant_SG
+        capturedata_1e4_5_TQM = capturedata_1e4_5_rgiant_TQM
+        capturedata_1e4_15_TQM = capturedata_1e4_15_rgiant_TQM
+        capturedata_1e4_30_TQM = capturedata_1e4_30_rgiant_TQM
+        capturedata_1e4_45_TQM = capturedata_1e4_45_rgiant_TQM
+        capturedata_1e4_60_TQM = capturedata_1e4_60_rgiant_TQM
+        capturedata_1e4_80_TQM = capturedata_1e4_80_rgiant_TQM
+        capturedata_1e4_90_TQM = capturedata_1e4_90_rgiant_TQM
+        capturedata_1e4_100_TQM = capturedata_1e4_100_rgiant_TQM
+        capturedata_1e4_120_TQM = capturedata_1e4_120_rgiant_TQM
+        capturedata_1e4_135_TQM = capturedata_1e4_135_rgiant_TQM
+        capturedata_1e4_150_TQM = capturedata_1e4_150_rgiant_TQM
+        capturedata_1e4_165_TQM = capturedata_1e4_165_rgiant_TQM
+        capturedata_1e4_175_TQM = capturedata_1e4_175_rgiant_TQM
+    if (star in m_star) == True:
+        capturedata_1e4_5_SG = capturedata_1e4_5_mstar_SG
+        capturedata_1e4_15_SG = capturedata_1e4_15_mstar_SG
+        capturedata_1e4_30_SG = capturedata_1e4_30_mstar_SG
+        capturedata_1e4_45_SG = capturedata_1e4_45_mstar_SG
+        capturedata_1e4_60_SG = capturedata_1e4_60_mstar_SG
+        capturedata_1e4_80_SG = capturedata_1e4_80_mstar_SG
+        capturedata_1e4_90_SG = capturedata_1e4_90_mstar_SG
+        capturedata_1e4_100_SG = capturedata_1e4_100_mstar_SG
+        capturedata_1e4_120_SG = capturedata_1e4_120_mstar_SG
+        capturedata_1e4_135_SG = capturedata_1e4_135_mstar_SG
+        capturedata_1e4_150_SG = capturedata_1e4_150_mstar_SG
+        capturedata_1e4_165_SG = capturedata_1e4_165_mstar_SG
+        capturedata_1e4_175_SG = capturedata_1e4_175_mstar_SG
+        #capturedata_1e4_5_TQM = capturedata_1e4_5_mstar_TQM
+        #capturedata_1e4_15_TQM = capturedata_1e4_15_mstar_TQM
+        #capturedata_1e4_30_TQM = capturedata_1e4_30_mstar_TQM
+        #capturedata_1e4_45_TQM = capturedata_1e4_45_mstar_TQM
+        #capturedata_1e4_60_TQM = capturedata_1e4_60_mstar_TQM
+        #capturedata_1e4_80_TQM = capturedata_1e4_80_mstar_TQM
+        #capturedata_1e4_90_TQM = capturedata_1e4_90_mstar_TQM
+        #capturedata_1e4_100_TQM = capturedata_1e4_100_mstar_TQM
+        #capturedata_1e4_120_TQM = capturedata_1e4_120_mstar_TQM
+        #capturedata_1e4_135_TQM = capturedata_1e4_135_mstar_TQM
+        #capturedata_1e4_150_TQM = capturedata_1e4_150_mstar_TQM
+        #capturedata_1e4_165_TQM = capturedata_1e4_165_mstar_TQM
+        #capturedata_1e4_175_TQM = capturedata_1e4_175_mstar_TQM
+    if (star in g_star) == True:
+        capturedata_1e4_5_SG = capturedata_1e4_5_gstar_SG
+        capturedata_1e4_15_SG = capturedata_1e4_15_gstar_SG
+        capturedata_1e4_30_SG = capturedata_1e4_30_gstar_SG
+        capturedata_1e4_45_SG = capturedata_1e4_45_gstar_SG
+        capturedata_1e4_60_SG = capturedata_1e4_60_gstar_SG
+        capturedata_1e4_80_SG = capturedata_1e4_80_gstar_SG
+        capturedata_1e4_90_SG = capturedata_1e4_90_gstar_SG
+        capturedata_1e4_100_SG = capturedata_1e4_100_gstar_SG
+        capturedata_1e4_120_SG = capturedata_1e4_120_gstar_SG
+        capturedata_1e4_135_SG = capturedata_1e4_135_gstar_SG
+        capturedata_1e4_150_SG = capturedata_1e4_150_gstar_SG
+        capturedata_1e4_165_SG = capturedata_1e4_165_gstar_SG
+        capturedata_1e4_175_SG = capturedata_1e4_175_gstar_SG
+        #capturedata_1e4_5_TQM = capturedata_1e4_5_gstar_TQM
+        #capturedata_1e4_15_TQM = capturedata_1e4_15_gstar_TQM
+        #capturedata_1e4_30_TQM = capturedata_1e4_30_gstar_TQM
+        #capturedata_1e4_45_TQM = capturedata_1e4_45_gstar_TQM
+        #capturedata_1e4_60_TQM = capturedata_1e4_60_gstar_TQM
+        #capturedata_1e4_80_TQM = capturedata_1e4_80_gstar_TQM
+        #capturedata_1e4_90_TQM = capturedata_1e4_90_gstar_TQM
+        #capturedata_1e4_100_TQM = capturedata_1e4_100_gstar_TQM
+        #capturedata_1e4_120_TQM = capturedata_1e4_120_gstar_TQM
+        #capturedata_1e4_135_TQM = capturedata_1e4_135_gstar_TQM
+        #capturedata_1e4_150_TQM = capturedata_1e4_150_gstar_TQM
+        #capturedata_1e4_165_TQM = capturedata_1e4_165_gstar_TQM
+        #capturedata_1e4_175_TQM = capturedata_1e4_175_gstar_TQM
+    if (star in o_star) == True:
+        capturedata_1e4_5_SG = capturedata_1e4_5_ostar_SG
+        capturedata_1e4_15_SG = capturedata_1e4_15_ostar_SG
+        capturedata_1e4_30_SG = capturedata_1e4_30_ostar_SG
+        capturedata_1e4_45_SG = capturedata_1e4_45_ostar_SG
+        capturedata_1e4_60_SG = capturedata_1e4_60_ostar_SG
+        capturedata_1e4_80_SG = capturedata_1e4_80_ostar_SG
+        capturedata_1e4_90_SG = capturedata_1e4_90_ostar_SG
+        capturedata_1e4_100_SG = capturedata_1e4_100_ostar_SG
+        capturedata_1e4_120_SG = capturedata_1e4_120_ostar_SG
+        capturedata_1e4_135_SG = capturedata_1e4_135_ostar_SG
+        capturedata_1e4_150_SG = capturedata_1e4_150_ostar_SG
+        capturedata_1e4_165_SG = capturedata_1e4_165_ostar_SG
+        capturedata_1e4_175_SG = capturedata_1e4_175_ostar_SG
+        #capturedata_1e4_5_TQM = capturedata_1e4_5_ostar_TQM
+        #capturedata_1e4_15_TQM = capturedata_1e4_15_ostar_TQM
+        #capturedata_1e4_30_TQM = capturedata_1e4_30_ostar_TQM
+        #capturedata_1e4_45_TQM = capturedata_1e4_45_ostar_TQM
+        #capturedata_1e4_60_TQM = capturedata_1e4_60_ostar_TQM
+        #capturedata_1e4_80_TQM = capturedata_1e4_80_ostar_TQM
+        #capturedata_1e4_90_TQM = capturedata_1e4_90_ostar_TQM
+        #capturedata_1e4_100_TQM = capturedata_1e4_100_ostar_TQM
+        #capturedata_1e4_120_TQM = capturedata_1e4_120_ostar_TQM
+        #capturedata_1e4_135_TQM = capturedata_1e4_135_ostar_TQM
+        #capturedata_1e4_150_TQM = capturedata_1e4_150_ostar_TQM
+        capturedata_1e4_165_TQM = capturedata_1e4_165_ostar_TQM
+        #capturedata_1e4_175_TQM = capturedata_1e4_175_ostar_TQM
+    
+    
+    ax1=plt.subplot(111)#(121)
+    ax1.scatter(capturedata_1e4_5_SG[3],capturedata_1e4_5_SG[1],
+        marker='.', c=capturedata_1e4_5_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_15_SG[3],capturedata_1e4_15_SG[1],
+        marker='.', c=capturedata_1e4_15_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_30_SG[3],capturedata_1e4_30_SG[1],
+        marker='.', c=capturedata_1e4_30_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_45_SG[3],capturedata_1e4_45_SG[1],
+        marker='.', c=capturedata_1e4_45_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_60_SG[3],capturedata_1e4_60_SG[1],
+        marker='.', c=capturedata_1e4_60_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_80_SG[3],capturedata_1e4_80_SG[1],
+        marker='.', c=capturedata_1e4_80_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_90_SG[3],capturedata_1e4_90_SG[1],
+        marker='.', c=capturedata_1e4_90_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_100_SG[3],capturedata_1e4_100_SG[1],
+        marker='.', c=capturedata_1e4_100_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_120_SG[3],capturedata_1e4_120_SG[1],
+        marker='.', c=capturedata_1e4_120_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_135_SG[3],capturedata_1e4_135_SG[1],
+        marker='.', c=capturedata_1e4_135_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_150_SG[3],capturedata_1e4_150_SG[1],
+        marker='.', c=capturedata_1e4_150_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    ax1.scatter(capturedata_1e4_165_SG[3],capturedata_1e4_165_SG[1],
+        marker='.', c=capturedata_1e4_165_SG[0]/Rg, cmap='inferno_r', norm=norm)
+    delta=ax1.scatter(capturedata_1e4_175_SG[3],capturedata_1e4_175_SG[1],
+        marker='.', c=capturedata_1e4_175_SG[0]/Rg, cmap='inferno_r', norm=norm)
     
     matplotlib.pyplot.annotate('SG', (4.5e3,175))
     #ax1.set_xlim([0,5.5e3])
@@ -119,41 +351,41 @@ def it_acolor_plot_proretro(): #this one
     ax1.set_xlabel('$t$ [$yr$]')
     ax1.set_ylabel('$i$ [$deg$]')
     
-    ax2=plt.subplot(122)
-    ax2.scatter(capturedata_1e4_5_rgiant_TQM[3],capturedata_1e4_5_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_5_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_15_rgiant_TQM[3],capturedata_1e4_15_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_15_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_30_rgiant_TQM[3],capturedata_1e4_30_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_30_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_45_rgiant_TQM[3],capturedata_1e4_45_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_45_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_60_rgiant_TQM[3],capturedata_1e4_60_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_60_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_80_rgiant_TQM[3],capturedata_1e4_80_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_80_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_90_rgiant_TQM[3],capturedata_1e4_90_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_90_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_100_rgiant_TQM[3],capturedata_1e4_100_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_100_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_120_rgiant_TQM[3],capturedata_1e4_120_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_120_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_135_rgiant_TQM[3],capturedata_1e4_135_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_135_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_150_rgiant_TQM[3],capturedata_1e4_150_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_150_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
-    ax2.scatter(capturedata_1e4_165_rgiant_TQM[3],capturedata_1e4_165_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_165_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)    
-    delta=ax2.scatter(capturedata_1e4_175_rgiant_TQM[3],capturedata_1e4_175_rgiant_TQM[1],
-        marker='.',label='r giant', c=capturedata_1e4_175_rgiant_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2=plt.subplot(122)
+    #ax2.scatter(capturedata_1e4_5_TQM[3],capturedata_1e4_5_TQM[1],
+    #    marker='.', c=capturedata_1e4_5_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_15_TQM[3],capturedata_1e4_15_TQM[1],
+    #    marker='.', c=capturedata_1e4_15_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_30_TQM[3],capturedata_1e4_30_TQM[1],
+    #    marker='.', c=capturedata_1e4_30_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_45_TQM[3],capturedata_1e4_45_TQM[1],
+    #    marker='.', c=capturedata_1e4_45_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_60_TQM[3],capturedata_1e4_60_TQM[1],
+    #    marker='.', c=capturedata_1e4_60_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_80_TQM[3],capturedata_1e4_80_TQM[1],
+    #    marker='.', c=capturedata_1e4_80_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_90_TQM[3],capturedata_1e4_90_TQM[1],
+    #    marker='.', c=capturedata_1e4_90_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_100_TQM[3],capturedata_1e4_100_TQM[1],
+    #    marker='.', c=capturedata_1e4_100_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_120_TQM[3],capturedata_1e4_120_TQM[1],
+    #    marker='.', c=capturedata_1e4_120_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_135_TQM[3],capturedata_1e4_135_TQM[1],
+    #    marker='.', c=capturedata_1e4_135_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_150_TQM[3],capturedata_1e4_150_TQM[1],
+    #    marker='.', c=capturedata_1e4_150_TQM[0]/Rg, cmap='inferno_r', norm=norm)
+    #ax2.scatter(capturedata_1e4_165_TQM[3],capturedata_1e4_165_TQM[1],
+    #    marker='.', c=capturedata_1e4_165_TQM[0]/Rg, cmap='inferno_r', norm=norm)    
+    #delta=ax2.scatter(capturedata_1e4_175_TQM[3],capturedata_1e4_175_TQM[1],
+    #    marker='.', c=capturedata_1e4_175_TQM[0]/Rg, cmap='inferno_r', norm=norm)
     
-    matplotlib.pyplot.annotate('TQM', (3e5,175))
-    #ax2.set_xlim([0,4e5])
-    plt.xscale('log') 
-    #ax2.set_xscale('symlog')
-    ax2.set_xlabel('$t$ [$yr$]')
-    #ax2.set_ylabel('$i$ [$deg$]')
-    ax2.yaxis.tick_right()
+    #matplotlib.pyplot.annotate('TQM', (3e5,175))
+    ##ax2.set_xlim([0,4e5])
+    #plt.xscale('log') 
+    ##ax2.set_xscale('symlog')
+    #ax2.set_xlabel('$t$ [$yr$]')
+    ##ax2.set_ylabel('$i$ [$deg$]')
+    #ax2.yaxis.tick_right()
     
     cbaxes = fig.add_axes([0.05, 0.1, 0.917, 0.03]) 
     cb = plt.colorbar(delta, cax = cbaxes, orientation='horizontal') 
@@ -163,8 +395,8 @@ def it_acolor_plot_proretro(): #this one
     #ax1.legend(fontsize=8, framealpha=1, edgecolor= 'k', 
     #    ncol=2, columnspacing=0.5, loc='center left', bbox_to_anchor=(0,0.05))
     
-    plt.savefig('plots/propertyplots/it_proretro.pdf')
-    plt.savefig('plots/propertyplots/it_proretro.jpeg')
+    plt.savefig('plots/propertyplots/it_proretro_'+star+'.pdf')
+    plt.savefig('plots/propertyplots/it_proretro_'+star+'.jpeg')
 
 def it_acolor_plot_45135(): #this one
     fig=plt.figure(figsize=(12,6))
@@ -805,8 +1037,8 @@ def stitch_plot_sBH():
     heighta = d[1] - a[1]
     e=[-180,10**5]
     f=[-180,10**8]
-    g=[180,(10**5)]
-    h=[180,(10**8)]
+    g=[182,(10**5)]
+    h=[182,(10**8)]
     widthi = g[0] - e[0]
     heighti = h[1] - e[1]
     lifetimea1=matplotlib.patches.Rectangle((0,10**5), widtha, heighta, angle=0.0, facecolor='lightgrey',alpha=0.5)
@@ -968,7 +1200,7 @@ def stitch_plot_sBH():
     plt.yscale('log')
     ax2.set_xlabel('$i$ [$deg$]', fontsize=12)
     ax2.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
-    ax2.set_xlim([-2,92])
+    ax2.set_xlim([-2,182])
     ax2.set_ylim([1e2,3e14])
     
     ax4=plt.subplot(224)    
@@ -1004,7 +1236,7 @@ def stitch_plot_sBH():
     plt.yscale('log')
     ax4.set_xlabel('$i$ [$deg$]', fontsize=12)
     #ax4.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
-    ax4.set_xlim([-2,92])
+    ax4.set_xlim([-2,182])
     ax4.set_ylim([1e2,3e14])
     ax4.yaxis.tick_right()
     

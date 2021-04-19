@@ -22,7 +22,9 @@ TQM = "TQM"
 SG = "SG"
 
 s_BH = "s_BH"
+s_BH_fifty = "s_BH_fifty"
 stellar = "stellar"
+w_dwarf = "w_dwarf"
 m_star = "m_star"
 g_star = "g_star"
 o_star = "o_star"
@@ -70,12 +72,17 @@ densityostar=densitystar(mostar,rostar)
 #densityostar=27.8 #[kg/m^3] kilogram per cubic meter #(densityostar) density of o star
 
 mrgiant=1.5*msun #[kg] kilogram #(mrgiant) mass of red giant 
-rrgiant=100* rsun #[m] meter #(rrgiant) radius of red giant
+rrgiant=100*rsun #[m] meter #(rrgiant) radius of red giant
 densityrgiant=densitystar(mrgiant,rrgiant)
 #densityrgiant=2.81 #[kg/m^3] kilogram per cubic meter #(densityrgiant) density of red giant
 
+mwdwarf=0.6*msun #[kg] kilogram 
+rwdwarf=0.01*rsun #[m] meter 
+densitywdwarf=densitystar(mwdwarf,rwdwarf)
+
 m_sBH=10*msun #[kg] kilogram #(m_sBH) mass of stellar mass black hole
 
+m_sBH_fifty=50*msun #[kg] kilogram
 #########################################################
 '''importing disk data for SG model'''
 
@@ -362,6 +369,7 @@ def Torb(am): #creating function for time of orbit Torb as function of radius #i
     torb=(circ(am))/(vel(am)) 
     return torb #units of seconds
     
+'''Add functionality for 50 msun sBH '''
 def rBH(i,am): #r bondi
     r=(2*G*m_sBH)/((vrz(i,am)**2)+(cs**2))
     return r
@@ -584,6 +592,9 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
     if (star in s_BH) == True:
         mstar=m_sBH
         rstar=rBH(i,am)
+    #if (star in sBH_fifty) == True:
+    #    mstar=m_sBH_fifty
+    #    rstar=5*rBH(i,am)
     if (star in m_star) == True:
         mstar=mmstar
         rstar=rmstar
@@ -596,6 +607,9 @@ def Tcapture(deg,radius,star,intermediate,disk,name):
     if (star in r_giant) == True:
         mstar=mrgiant
         rstar=rrgiant
+    #if (star in w_dwarf) == True:
+    #    mstar=mwdwarf
+    #    rstar=rwdwarf
     
     n=0
     t_sum=0
