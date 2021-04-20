@@ -1,5 +1,7 @@
 i_0=pi/4
-irange=[pi/36,pi/12,pi/6,pi/4,pi/3,4*pi/9]
+#irange=[pi/36,pi/12,pi/6,pi/4,pi/3,4*pi/9]
+irange=[5/degrees,15/degrees,30/degrees,45/degrees,60/degrees,80/degrees,
+        90/degrees,100/degrees,120/degrees,135/degrees,150/degrees,165/degrees,175/degrees]
 irangedeg=[5*degrees,15*degrees,30*degrees,45*degrees,60*degrees,80*degrees,
            90*degrees,100*degrees,120*degrees,135*degrees,150*degrees,165*degrees,175*degrees]
 ideg=[pi/36*degrees,pi/12*degrees,pi/6*degrees,pi/4*degrees,pi/3*degrees,4*pi/9*degrees]
@@ -92,12 +94,26 @@ for j in range(len(irange4_TQM)):
         Tcapgstari_TQM.append(Tcap_estim_STO(irange4_TQM[j],am_0,rsun,densitysun,hint_TQM,density_TQM))
         Tcapmstari_TQM.append(Tcap_estim_STO(irange4_TQM[j],am_0,rmstar,densitymstar,hint_TQM,density_TQM))
 
+Tcap175deg_SG=[]
+Tcap165deg_SG=[]
+Tcap150deg_SG=[]
+Tcap135deg_SG=[]
+Tcap120deg_SG=[]
+Tcap100deg_SG=[]
+Tcap90deg_SG=[]
 Tcap80deg_SG=[]
 Tcap60deg_SG=[]
 Tcap45deg_SG=[]
 Tcap30deg_SG=[]
 Tcap15deg_SG=[]
 Tcap05deg_SG=[]
+Tcap175deg_TQM=[]
+Tcap165deg_TQM=[]
+Tcap150deg_TQM=[]
+Tcap135deg_TQM=[]
+Tcap120deg_TQM=[]
+Tcap100deg_TQM=[]
+Tcap90deg_TQM=[]
 Tcap80deg_TQM=[]
 Tcap60deg_TQM=[]
 Tcap45deg_TQM=[]
@@ -105,6 +121,13 @@ Tcap30deg_TQM=[]
 Tcap15deg_TQM=[]
 Tcap05deg_TQM=[]
 for j in range(len(amrange_SG)):
+    Tcap175deg_SG.append(Tcap_estim_BHL(irange[12],amrange_SG[j],hint_SG,density_SG))
+    Tcap165deg_SG.append(Tcap_estim_BHL(irange[11],amrange_SG[j],hint_SG,density_SG))
+    Tcap150deg_SG.append(Tcap_estim_BHL(irange[10],amrange_SG[j],hint_SG,density_SG))
+    Tcap135deg_SG.append(Tcap_estim_BHL(irange[9],amrange_SG[j],hint_SG,density_SG))
+    Tcap120deg_SG.append(Tcap_estim_BHL(irange[8],amrange_SG[j],hint_SG,density_SG))
+    Tcap100deg_SG.append(Tcap_estim_BHL(irange[7],amrange_SG[j],hint_SG,density_SG))
+    Tcap90deg_SG.append(Tcap_estim_BHL(irange[6],amrange_SG[j],hint_SG,density_SG))
     Tcap80deg_SG.append(Tcap_estim_BHL(irange[5],amrange_SG[j],hint_SG,density_SG))
     Tcap60deg_SG.append(Tcap_estim_BHL(irange[4],amrange_SG[j],hint_SG,density_SG))
     Tcap45deg_SG.append(Tcap_estim_BHL(irange[3],amrange_SG[j],hint_SG,density_SG))
@@ -112,6 +135,13 @@ for j in range(len(amrange_SG)):
     Tcap15deg_SG.append(Tcap_estim_BHL(irange[1],amrange_SG[j],hint_SG,density_SG))
     Tcap05deg_SG.append(Tcap_estim_BHL(irange[0],amrange_SG[j],hint_SG,density_SG))
 for j in range(len(amrange_TQM)):
+    Tcap175deg_TQM.append(Tcap_estim_BHL(irange[12],amrange_TQM[j],hint_TQM,density_TQM))
+    Tcap165deg_TQM.append(Tcap_estim_BHL(irange[11],amrange_TQM[j],hint_TQM,density_TQM))
+    Tcap150deg_TQM.append(Tcap_estim_BHL(irange[10],amrange_TQM[j],hint_TQM,density_TQM))
+    Tcap135deg_TQM.append(Tcap_estim_BHL(irange[9],amrange_TQM[j],hint_TQM,density_TQM))
+    Tcap120deg_TQM.append(Tcap_estim_BHL(irange[8],amrange_TQM[j],hint_TQM,density_TQM))
+    Tcap100deg_TQM.append(Tcap_estim_BHL(irange[7],amrange_TQM[j],hint_TQM,density_TQM))
+    Tcap90deg_TQM.append(Tcap_estim_BHL(irange[6],amrange_TQM[j],hint_TQM,density_TQM))
     Tcap80deg_TQM.append(Tcap_estim_BHL(irange[5],amrange_TQM[j],hint_TQM,density_TQM))
     Tcap60deg_TQM.append(Tcap_estim_BHL(irange[4],amrange_TQM[j],hint_TQM,density_TQM))
     Tcap45deg_TQM.append(Tcap_estim_BHL(irange[3],amrange_TQM[j],hint_TQM,density_TQM))

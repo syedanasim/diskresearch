@@ -891,7 +891,7 @@ def stitch_plot_stellar():
     ax1.plot(capturedata_a_ostar_SG[1], capturedata_a_ostar_SG[2],'*',
         markersize=7,markerfacecolor='k',markeredgewidth=acapw,markeredgecolor='royalblue')
     #
-    matplotlib.pyplot.annotate('$i_{0} = 45^{\circ}$', (5e0,5e17))
+    matplotlib.pyplot.annotate('$i_{0} = 45^{\circ}$', (5e0,5e16))
     matplotlib.pyplot.annotate('AGN lifetime', (1*10**6,1e7))
     ax1.add_patch(lifetimea1)
     ax1.legend(fontsize=12, framealpha=1, edgecolor= 'k', handlelength=6,
@@ -900,8 +900,8 @@ def stitch_plot_stellar():
     plt.yscale('log')
     ax1.set_xlabel('$a$ [$R_g$]', fontsize=12)
     ax1.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
-    ax1.set_xlim([3e0,3e7])
-    ax1.set_ylim([2e-1,1e19])
+    ax1.set_xlim([3e0,2e7])
+    ax1.set_ylim([5e-2,2e18])
     
     ax3=plt.subplot(222)
     ax3.plot(amrange_TQM/Rg,Tcaprgianta_TQM,'r:',lw=uplimw,label='Red Giant',c='crimson')
@@ -959,7 +959,7 @@ def stitch_plot_stellar():
     ax3.set_xlabel('$a$ [$R_g$]', fontsize=12)
     #ax3.set_ylabel('$T_{cap}$ [$yr$]', fontsize=12)
     ax3.set_xlim([4e1,6e7])
-    ax3.set_ylim([2e-1,1e19])
+    ax3.set_ylim([5e-2,2e18])
     ax3.yaxis.tick_right()
     
     ax2=plt.subplot(223)
@@ -1096,6 +1096,14 @@ def stitch_plot_sBH():
     ax1.plot(capturedata_45_sBH_SG[1],capturedata_45_sBH_SG[2],'*',
             markersize=7,markerfacecolor='k', markeredgewidth=acapw, markeredgecolor='darkmagenta')
     
+    ax1.plot(amrange_SG/Rg,Tcap90deg_SG,'r:',lw=uplimw,label='$90^{\circ}$',c='k')
+    ax1.plot(amrange_SG/Rg,Tcap100deg_SG,'r:',lw=uplimw,label='$100^{\circ}$',c='k')
+    ax1.plot(amrange_SG/Rg,Tcap120deg_SG,'r:',lw=uplimw,label='$120^{\circ}$',c='k')
+    ax1.plot(amrange_SG/Rg,Tcap135deg_SG,'r:',lw=uplimw,label='$135^{\circ}$',c='k')
+    ax1.plot(amrange_SG/Rg,Tcap150deg_SG,'r:',lw=uplimw,label='$150^{\circ}$',c='k')
+    ax1.plot(amrange_SG/Rg,Tcap165deg_SG,'r:',lw=uplimw,label='$165^{\circ}$',c='k')
+    ax1.plot(amrange_SG/Rg,Tcap175deg_SG,'r:',lw=uplimw,label='$175^{\circ}$',c='k')
+    
     matplotlib.pyplot.annotate('AGN lifetime', (1.5e6,1e7))
     ax1.add_patch(lifetimea1)
     ax1.legend(fontsize=12, framealpha=1, edgecolor= 'k', handlelength=6,
@@ -1153,6 +1161,15 @@ def stitch_plot_sBH():
         markersize=7, markerfacecolor='k', markeredgewidth=acapw, markeredgecolor='k')
     ax3.plot(capturedata_80_sBH_TQM[1],capturedata_80_sBH_TQM[2],'*',
         markersize=7, markerfacecolor='k', markeredgewidth=acapw, markeredgecolor='brown')
+    
+    ax3.plot(amrange_TQM/Rg,Tcap90deg_TQM,'r:',lw=uplimw,label='$90^{\circ}$',c='k')
+    ax3.plot(amrange_TQM/Rg,Tcap100deg_TQM,'r:',lw=uplimw,label='$100^{\circ}$',c='k')
+    ax3.plot(amrange_TQM/Rg,Tcap120deg_TQM,'r:',lw=uplimw,label='$120^{\circ}$',c='k')
+    ax3.plot(amrange_TQM/Rg,Tcap135deg_TQM,'r:',lw=uplimw,label='$135^{\circ}$',c='k')
+    ax3.plot(amrange_TQM/Rg,Tcap150deg_TQM,'r:',lw=uplimw,label='$150^{\circ}$',c='k')
+    ax3.plot(amrange_TQM/Rg,Tcap165deg_TQM,'r:',lw=uplimw,label='$165^{\circ}$',c='k')
+    ax3.plot(amrange_TQM/Rg,Tcap175deg_TQM,'r:',lw=uplimw,label='$175^{\circ}$',c='k')
+    
     matplotlib.pyplot.annotate('AGN lifetime', (4e6,1e7))
     ax3.add_patch(lifetimea3)
     #ax3.legend(fontsize=8.5, framealpha=1, edgecolor= 'k', handlelength=2.8,
@@ -2481,7 +2498,7 @@ def plot_Tcap_i_sBH(name): # (i,Tcap) #(am,hint,density,name)
         plt.yscale('log')
         ax2.set_xlabel('$i$ [$deg$]', fontsize=14)
         ax2.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
-        ax2.set_xlim([-2,92])
+        ax2.set_xlim([-2,182])
         #    ax2.set_ylim([1e-1,1e14])
     
     if (name in TQM) == True:
@@ -2519,7 +2536,7 @@ def plot_Tcap_i_sBH(name): # (i,Tcap) #(am,hint,density,name)
         plt.yscale('log')
         ax4.set_xlabel('$i$ [$deg$]', fontsize=14)
         ax4.set_ylabel('$T_{cap}$ [$yr$]', fontsize=14)
-        ax4.set_xlim([-2,92])
+        ax4.set_xlim([-2,182])
         #    ax4.set_ylim([1e-1,1e14])
     
     plt.savefig('plots/capturetimeplots/sBH-Tcap_i_'+name+'.pdf')
